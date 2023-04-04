@@ -1,0 +1,48 @@
+body {
+  text-align: center;
+}
+
+h1 {
+  margin: auto;
+  margin-top: 3vh;
+  margin-bottom: 3vh;
+}
+
+.txtin {
+  width: 10vw;
+}
+
+input {
+  margin: auto;
+  margin-top: 0.5vh;
+  margin-bottom: 1.5vh;
+  width: 30%;
+  height: 5vh;
+  font-size: 2vh;
+}
+
+#signinform {
+  margin: auto;
+  margin-top: 3vh;
+  width: 40vw;
+}
+
+#waiverform {
+  margin: auto;
+  margin-top: 3vh;
+  width: 40vw;
+}
+
+#waivertxt {
+  margin: auto;
+  margin-top: 3vh;
+  width: 40vw;
+  white-space: pre-wrap;
+  word-wrap: break-word;
+}
+
+table {
+  margin: auto;
+  margin-top: 3vh;
+  width: 40vw;
+}
