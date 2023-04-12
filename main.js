@@ -120,8 +120,8 @@ async function anon_signout(timein) {
 }
 
 async function signout_all() {
-  const ref = db.collection('public');
-  const snapshot = await db.collection('usage_log').where('signout', '==', 0).get();
+  const ref = db.collection(PUBLIC_REF);
+  const snapshot = await db.collection(USAGE_LOG_REF).where('signout', '==', 0).get();
   const time = date.now();
 
   await ref.forEach(doc => {
