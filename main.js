@@ -9,6 +9,10 @@ const firebaseConfig = {
   appId: "1:862046563935:web:3e09993dd977d85277b5ea"
 };
 
+const USAGE_LOG_REF = "usage_log_test";
+const PUBLIC_REF = "public_test";
+const USERS_REF = "users_test";
+
 var user = null;
 
 // Initialize Firebase
@@ -40,12 +44,12 @@ async function signWaiver() {
     netid: netid,
     name: name
   }
-  await db.collection("users").doc(netid).set(data);
+  await db.collection(USERS_REF).doc(netid).set(data);
   alert("Signed Waiver!");
 }
 
 async function getName(netid) {
-  const userdoc = db.collection('users').doc(netid);
+  const userdoc = db.collection(USERS_REF).doc(netid);
   const doc = await userdoc.get();
   if (!doc.exists) {
     return null;
@@ -72,7 +76,7 @@ async function signinout(){
     alert("Please sign the waiver first!");
     return false;
   }
-  const ref = db.collection('usage_log');
+  const ref = db.collection(USAGE_LOG_REF);
   const snapshot = await ref.where('netid', '==', netid).where('signout', '==', 0).get();
   if (snapshot.empty) {
     await signin(netid, time);
@@ -100,7 +104,7 @@ async function signinout(){
 }
 
 async function anon_signout(timein) {
-  const ref = db.collection('public');
+  const ref = db.collection(PUBLIC_REF);
   const snapshot = await ref.where('signin', '==', timein).get();
   if (snapshot.empty) {
     console.log("No matching documents.");
@@ -138,13 +142,13 @@ async function signin(netid, time) {
   const anon_data = {
     signin: time,
   }
-  await db.collection("usage_log").add(data);
-  await db.collection("public").add(anon_data);
+  await db.collection(USAGE_LOG_REF).add(data);
+  await db.collection(PUBLIC_REF).add(anon_data);
   // const name = getName(netid);
 }
 
 async function settable() {
-  const ref = db.collection('usage_log');
+  const ref = db.collection(USAGE_LOG_REF);
   const snapshot = await ref.where("signout", "==", 0).get();
   var table = "<tr><th>Net ID</th><th>Name</th><th>Sign In Time</th><th>Time Climbing</th></tr>";
   snapshot.forEach(doc => {
@@ -156,7 +160,7 @@ async function settable() {
 }
 
 async function settablecount() {
-  const ref = db.collection('public');
+  const ref = db.collection(PUBLIC_REF);
   const snapshot = await ref.get();
   var table = "<tr><th>Sign In Time</th><th>Time Climbing</th></tr>";
   snapshot.forEach(doc => {
@@ -168,7 +172,7 @@ async function settablecount() {
 }
 
 async function downloadcsv() {
-  const ref = db.collection('usage_log');
+  const ref = db.collection(USAGE_LOG_REF);
   const snapshot = await ref.where("signout", "!=", 0).get();
   var csv = "netid,signin,signout\n";
   snapshot.forEach(doc => {
@@ -182,7 +186,7 @@ async function downloadcsv() {
 }
 
 async function getcount() {
-  const ref = db.collection('public').doc('info');
+  const ref = db.collection(PUBLIC_REF).doc('info');
   const doc = await ref.get();
   if (!doc.exists) {
     return 0;
@@ -198,7 +202,7 @@ async function addtocount(num) {
   const data = {
     climbers: newcount
   };
-  await db.collection("public").doc("info").set(data);
+  await db.collection(PUBLIC_REF).doc("info").set(data);
 }
 
 async function adminsignin() {
