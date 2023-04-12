@@ -1,4 +1,5 @@
 // Your web app's Firebase configuration
+
 const firebaseConfig = {
   apiKey: "AIzaSyBvDOY1RganlcrHPOKqANwEVxVr5m1KZwI",
   authDomain: "dartmouth-climbing-gym.firebaseapp.com",
@@ -114,6 +115,20 @@ async function anon_signout(timein) {
   });
 }
 
+async function signout_all() {
+  const ref = db.collection('public');
+  const snapshot = await db.collection('usage_log').where('signout', '==', 0).get();
+  const time = date.now();
+
+  await ref.forEach(doc => {
+    anon_signout(doc.data().signin)
+  })
+
+  await snapshot.forEach(doc => {
+      doc.ref.update({signout: time});
+  })
+  alert("Signed out all!")
+}
 async function signin(netid, time) {
   const data = {
     netid: netid,
