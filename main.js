@@ -120,9 +120,9 @@ async function anon_signout(timein) {
 }
 
 async function signout_all() {
-  const ref = db.collection(PUBLIC_REF);
+  const ref = await db.collection(PUBLIC_REF).get();
   const snapshot = await db.collection(USAGE_LOG_REF).where('signout', '==', 0).get();
-  const time = date.now();
+  const time = Date.now();
 
   await ref.forEach(doc => {
     anon_signout(doc.data().signin)
@@ -130,9 +130,11 @@ async function signout_all() {
 
   await snapshot.forEach(doc => {
       doc.ref.update({signout: time});
-  })
+  });
   alert("Signed out all!")
+  await settable(); // give time to load user
 }
+
 async function signin(netid, time) {
   const data = {
     netid: netid,
@@ -157,6 +159,7 @@ async function settable() {
       document.getElementById("climbers").innerHTML = table;
     });
   });
+  document.getElementById("climbers").innerHTML = table;
 }
 
 async function settablecount() {

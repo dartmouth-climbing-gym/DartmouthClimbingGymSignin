@@ -12,6 +12,10 @@ h1 {
   width: 10vw;
 }
 
+.btn-primary {
+  background-color: #00693e;
+}
+
 input {
   margin: auto;
   margin-top: 0.5vh;
