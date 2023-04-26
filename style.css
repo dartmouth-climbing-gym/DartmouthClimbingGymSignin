@@ -37,6 +37,12 @@ input {
   width: 40vw;
 }
 
+#payform {
+  margin: auto;
+  margin-top: 3vh;
+  width: 60vw;
+}
+
 #waivertxt {
   margin: auto;
   margin-top: 3vh;

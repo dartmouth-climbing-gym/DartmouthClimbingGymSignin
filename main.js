@@ -58,6 +58,16 @@ async function getName(netid) {
   }
 }
 
+async function checkApproved(netid) {
+  const userdoc = db.collection(USERS_REF).doc(netid);
+  const doc = await userdoc.get();
+  if (!doc.exists) {
+    return false;
+  } else {
+    return (typeof(doc.data().monitor_approved) != 'undefined') && (doc.data().monitor_approved);
+  }
+}
+
 async function getpw() {
   const ref = db.collection('admin').doc('identification');
   const doc = await ref.get();
@@ -74,6 +84,11 @@ async function signinout(){
   const name = await getName(netid);
   if(name == null){
     alert("Please sign the waiver first!");
+    return false;
+  }
+  const approved = await checkApproved(netid);
+  if(!approved) {
+    alert("Please have a monitor approve your payment status first!");
     return false;
   }
   const ref = db.collection(USAGE_LOG_REF);
@@ -211,7 +226,7 @@ async function addtocount(num) {
 async function addpayinguser() {
   const netid = document.getElementById("netid").value.toLowerCase();
   const ref = db.collection(USERS_REF);
-  const snapshot = await ref.where('netid', '==', netid);
+  const snapshot = await ref.where('netid', '==', netid).get();
   if (snapshot.empty) {
     alert("user not found!");
   }
