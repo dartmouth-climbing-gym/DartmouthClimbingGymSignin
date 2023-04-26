@@ -186,9 +186,10 @@ async function setopotable() {
   snapshot = await ref.get();
   var table = "<tr><th>Net ID</th><th>Name</th><th>Approved</th></tr>";
   snapshot.forEach(doc => {
-    tempnetid = doc.data().netid
+    var tempnetid = doc.data().netid
     getName(tempnetid).then(name => {
-      table += "<tr><td>" + tempnetid + "</td><td>" + name + "</td><td>" + "</td><input type='checkbox' onchange=opoapprove(tempnetid) ><td>";
+      table += "<tr><td>" + tempnetid + "</td><td>" + name + "</td>" + "<td><input type='checkbox' onchange=opoapprove('"+tempnetid+"') "+(doc.data().opo_approved==true ? "checked": "")+" ></td></tr>";
+      console.log(table);
       document.getElementById("payments").innerHTML = table;
     });
   });
