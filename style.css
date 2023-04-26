@@ -16,6 +16,10 @@ h1 {
   background-color: #00693e;
 }
 
+.paymentcheck {
+  width: 20px;
+}
+
 input {
   margin: auto;
   margin-top: 0.5vh;
