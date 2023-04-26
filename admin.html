@@ -34,9 +34,20 @@
           <th>Time Climbing</th>
         </tr>
       </table>
+        <br>
+        <button class="btn btn-primary" onclick="signout_all();">Sign Out All</button>
+      </div>
+      <br><br>
+      <h4>Approve Paying Climbers:</h4>
+      <div id="adduserpayment">
+        <form id="payform">
+          <label for="netid">Enter Climber NetID:</label><br>
+          <input class="form-control-md" type="text" id="netid"><br>
+          <input  class="btn btn-primary" type="submit" value="Enter">
+        </form>
       </div>
       <br><br><br>
-      <button class="btn btn-primary" onclick="downloadcsv();">Download Signin CSV</button>
+      <!-- <button class="btn btn-primary" onclick="downloadcsv();">Download Signin CSV</button> -->
     </div>
     <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-app.js"></script>
     <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-firestore.js"></script>
@@ -56,6 +67,13 @@
         adminsignin();
       } 
       form.addEventListener('submit', handleForm);
+
+      var paymentform = document.getElementById("payform");
+      function handlePayment(event) { 
+        event.preventDefault(); 
+        addpayinguser();
+      } 
+      paymentform.addEventListener('submit', handlePayment);
     </script>
   </body>
   

@@ -12,6 +12,14 @@ h1 {
   width: 10vw;
 }
 
+.btn-primary {
+  background-color: #00693e;
+}
+
+.paymentcheck {
+  width: 20px;
+}
+
 input {
   margin: auto;
   margin-top: 0.5vh;
@@ -31,6 +39,12 @@ input {
   margin: auto;
   margin-top: 3vh;
   width: 40vw;
+}
+
+#payform {
+  margin: auto;
+  margin-top: 3vh;
+  width: 60vw;
 }
 
 #waivertxt {

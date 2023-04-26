@@ -1,4 +1,5 @@
 // Your web app's Firebase configuration
+
 const firebaseConfig = {
   apiKey: "AIzaSyBvDOY1RganlcrHPOKqANwEVxVr5m1KZwI",
   authDomain: "dartmouth-climbing-gym.firebaseapp.com",
@@ -7,6 +8,10 @@ const firebaseConfig = {
   messagingSenderId: "862046563935",
   appId: "1:862046563935:web:3e09993dd977d85277b5ea"
 };
+
+const USAGE_LOG_REF = "usage_log_test";
+const PUBLIC_REF = "public_test";
+const USERS_REF = "users_test";
 
 var user = null;
 
@@ -39,17 +44,27 @@ async function signWaiver() {
     netid: netid,
     name: name
   }
-  await db.collection("users").doc(netid).set(data);
+  await db.collection(USERS_REF).doc(netid).set(data);
   alert("Signed Waiver!");
 }
 
 async function getName(netid) {
-  const userdoc = db.collection('users').doc(netid);
+  const userdoc = db.collection(USERS_REF).doc(netid);
   const doc = await userdoc.get();
   if (!doc.exists) {
     return null;
   } else {
     return doc.data().name;
+  }
+}
+
+async function checkApproved(netid) {
+  const userdoc = db.collection(USERS_REF).doc(netid);
+  const doc = await userdoc.get();
+  if (!doc.exists) {
+    return false;
+  } else {
+    return (typeof(doc.data().monitor_approved) != 'undefined') && (doc.data().monitor_approved);
   }
 }
 
@@ -71,7 +86,12 @@ async function signinout(){
     alert("Please sign the waiver first!");
     return false;
   }
-  const ref = db.collection('usage_log');
+  const approved = await checkApproved(netid);
+  if(!approved) {
+    alert("Please have a monitor approve your payment status first!");
+    return false;
+  }
+  const ref = db.collection(USAGE_LOG_REF);
   const snapshot = await ref.where('netid', '==', netid).where('signout', '==', 0).get();
   if (snapshot.empty) {
     await signin(netid, time);
@@ -99,7 +119,7 @@ async function signinout(){
 }
 
 async function anon_signout(timein) {
-  const ref = db.collection('public');
+  const ref = db.collection(PUBLIC_REF);
   const snapshot = await ref.where('signin', '==', timein).get();
   if (snapshot.empty) {
     console.log("No matching documents.");
@@ -114,6 +134,22 @@ async function anon_signout(timein) {
   });
 }
 
+async function signout_all() {
+  const ref = await db.collection(PUBLIC_REF).get();
+  const snapshot = await db.collection(USAGE_LOG_REF).where('signout', '==', 0).get();
+  const time = Date.now();
+
+  await ref.forEach(doc => {
+    anon_signout(doc.data().signin)
+  })
+
+  await snapshot.forEach(doc => {
+      doc.ref.update({signout: time});
+  });
+  alert("Signed out all!")
+  await settable(); // give time to load user
+}
+
 async function signin(netid, time) {
   const data = {
     netid: netid,
@@ -123,13 +159,13 @@ async function signin(netid, time) {
   const anon_data = {
     signin: time,
   }
-  await db.collection("usage_log").add(data);
-  await db.collection("public").add(anon_data);
+  await db.collection(USAGE_LOG_REF).add(data);
+  await db.collection(PUBLIC_REF).add(anon_data);
   // const name = getName(netid);
 }
 
 async function settable() {
-  const ref = db.collection('usage_log');
+  const ref = db.collection(USAGE_LOG_REF);
   const snapshot = await ref.where("signout", "==", 0).get();
   var table = "<tr><th>Net ID</th><th>Name</th><th>Sign In Time</th><th>Time Climbing</th></tr>";
   snapshot.forEach(doc => {
@@ -138,10 +174,51 @@ async function settable() {
       document.getElementById("climbers").innerHTML = table;
     });
   });
+  document.getElementById("climbers").innerHTML = table;
+}
+
+/*
+Set values for OPO payment table on DCG Website - do not alter firestore values
+@Sebastian Frazier
+ */
+async function setopotable() {
+  const ref = db.collection(USERS_REF);
+  snapshot = await ref.get();
+  var table = "<tr><th>Net ID</th><th>Name</th><th>Approved</th></tr>";
+  snapshot.forEach(doc => {
+    var tempnetid = doc.data().netid
+    getName(tempnetid).then(name => {
+      table += "<tr><td>" + tempnetid + "</td><td>" + name + "</td>" + "<td><input class='form-check paymentcheck' type='checkbox' onchange=opoapprove('"+tempnetid+"') "+(doc.data().opo_approved==true ? "checked": "")+" ></td></tr>";
+      console.log(table);
+      document.getElementById("payments").innerHTML = table;
+    });
+  });
+  document.getElementById("payments").innerHTML = table;
+}
+/*
+@author: Sebastian Frazier
+@param netid - netid of user being (un)approved for payment
+
+Sets payment approval status of user as true or false
+ */
+async function opoapprove(netid) {
+  const ref = db.collection(USERS_REF);
+  snapshot = await ref.where("netid", "==", netid).where("monitor_approved", "==", true).get();
+
+  if (snapshot.empty) {
+    alert("user not found!");
+  }
+  else {
+    snapshot.forEach(doc => {
+      if (doc.data().opo_approved !== undefined) doc.ref.update({opo_approved: !doc.data().opo_approved})
+
+      else doc.ref.update({opo_approved: true})
+      });
+  }
 }
 
 async function settablecount() {
-  const ref = db.collection('public');
+  const ref = db.collection(PUBLIC_REF);
   const snapshot = await ref.get();
   var table = "<tr><th>Sign In Time</th><th>Time Climbing</th></tr>";
   snapshot.forEach(doc => {
@@ -153,7 +230,7 @@ async function settablecount() {
 }
 
 async function downloadcsv() {
-  const ref = db.collection('usage_log');
+  const ref = db.collection(USAGE_LOG_REF);
   const snapshot = await ref.where("signout", "!=", 0).get();
   var csv = "netid,signin,signout\n";
   snapshot.forEach(doc => {
@@ -167,7 +244,7 @@ async function downloadcsv() {
 }
 
 async function getcount() {
-  const ref = db.collection('public').doc('info');
+  const ref = db.collection(PUBLIC_REF).doc('info');
   const doc = await ref.get();
   if (!doc.exists) {
     return 0;
@@ -183,7 +260,23 @@ async function addtocount(num) {
   const data = {
     climbers: newcount
   };
-  await db.collection("public").doc("info").set(data);
+  await db.collection(PUBLIC_REF).doc("info").set(data);
+}
+
+async function addpayinguser() {
+  const netid = document.getElementById("netid").value.toLowerCase();
+  const ref = db.collection(USERS_REF);
+  const snapshot = await ref.where('netid', '==', netid).get();
+  if (snapshot.empty) {
+    alert("user not found!");
+  }
+  else {
+    snapshot.forEach(doc => {
+      doc.ref.update({monitor_approved: true});
+    });
+    alert("User Approved!");
+    document.getElementById("netid").value="";
+  }
 }
 
 async function adminsignin() {
