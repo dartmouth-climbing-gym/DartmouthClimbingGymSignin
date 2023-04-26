@@ -177,6 +177,45 @@ async function settable() {
   document.getElementById("climbers").innerHTML = table;
 }
 
+/*
+Set values for OPO payment table on DCG Website - do not alter firestore values
+@Sebastian Frazier
+ */
+async function setopotable() {
+  const ref = db.collection(USERS_REF);
+  snapshot = await ref.get();
+  var table = "<tr><th>Net ID</th><th>Name</th><th>Approved</th></tr>";
+  snapshot.forEach(doc => {
+    tempnetid = doc.data().netid
+    getName(tempnetid).then(name => {
+      table += "<tr><td>" + tempnetid + "</td><td>" + name + "</td><td>" + "</td><input type='checkbox' onchange=opoapprove(tempnetid) ><td>";
+      document.getElementById("payments").innerHTML = table;
+    });
+  });
+  document.getElementById("payments").innerHTML = table;
+}
+/*
+@author: Sebastian Frazier
+@param netid - netid of user being (un)approved for payment
+
+Sets payment approval status of user as true or false
+ */
+async function opoapprove(netid) {
+  const ref = db.collection(USERS_REF);
+  snapshot = await ref.where("netid", "==", netid).where("monitor_approved", "==", true).get();
+
+  if (snapshot.empty) {
+    alert("user not found!");
+  }
+  else {
+    snapshot.forEach(doc => {
+      if (doc.data().opo_approved !== undefined) doc.ref.update({opo_approved: !doc.data().opo_approved})
+
+      else doc.ref.update({opo_approved: true})
+      });
+  }
+}
+
 async function settablecount() {
   const ref = db.collection(PUBLIC_REF);
   const snapshot = await ref.get();

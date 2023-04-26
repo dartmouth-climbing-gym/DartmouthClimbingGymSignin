@@ -1,0 +1,62 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <!-- Required meta tags -->
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <!-- Bootstrap CSS -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+
+  <link rel="stylesheet" href="style.css">
+
+  <title>OPO Payment Tracking</title>
+</head>
+<body>
+<div id="signin">
+  <form id="adminform">
+    <label for="password">Enter Admin Password:</label>
+    <input type="password" id="password">
+    <input type="submit" value="Enter">
+  </form>
+</div>
+<div id="admin" style="display: none;">
+  <div id="header">
+    <img src="climbing_gym_logo.png" width="600" alt="logo" />
+  </div>
+  <div>
+    <h3>Users</h3>
+    <table id="payments">
+      <tr>
+        <th>Net ID</th>
+        <th>Name</th>
+        <th>Approved</th>
+
+      </tr>
+    </table>
+  </div>
+  <br><br><br>
+  <button class="btn btn-primary" onclick="downloadcsv();">Download Signin CSV</button>
+</div>
+<script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-app.js"></script>
+<script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-firestore.js"></script>
+<script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-auth.js"></script>
+<script src="./main.js"></script>
+<script>
+  async function loadpage() {
+    await new Promise(resolve => setTimeout(resolve, 500)); // give time to load user
+    document.getElementById("admin").style.display = "block";
+    document.getElementById("signin").style.display = "none";
+    setopotable();
+    // setInterval(settable, 60000);
+  }
+  var form = document.getElementById("adminform");
+  function handleForm(event) {
+    event.preventDefault();
+    adminsignin();
+  }
+  form.addEventListener('submit', handleForm);
+</script>
+</body>
+
+</html>
