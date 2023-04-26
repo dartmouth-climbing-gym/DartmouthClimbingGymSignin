@@ -122,7 +122,7 @@ async function anon_signout(timein) {
 async function signout_all() {
   const ref = db.collection(PUBLIC_REF);
   const snapshot = await db.collection(USAGE_LOG_REF).where('signout', '==', 0).get();
-  const time = date.now();
+  const time = Date.now();
 
   await ref.forEach(doc => {
     anon_signout(doc.data().signin)
@@ -203,6 +203,21 @@ async function addtocount(num) {
     climbers: newcount
   };
   await db.collection(PUBLIC_REF).doc("info").set(data);
+}
+
+async function addpayinguser() {
+  const netid = document.getElementById("netid").value.toLowerCase();
+  const ref = db.collection(USERS_REF);
+  const snapshot = await ref.where('netid', '==', netid);
+  if (snapshot.empty) {
+    alert("user not found!");
+  }
+  else {
+    snapshot.forEach(doc => {
+      doc.ref.update({monitor_approved: true});
+    });
+    alert("User Approved!");
+  }
 }
 
 async function adminsignin() {

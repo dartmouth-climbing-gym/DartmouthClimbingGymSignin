@@ -35,9 +35,17 @@
         </tr>
       </table>
         <br>
-        <button class="btn btn-primary" onclick="signout_all();">Sign Out All</button>
+        <button class="btn btn-primary" onclick="() => {signout_all(); settable();};">Sign Out All</button>
       </div>
       <br><br><br>
+      <h2>Approve Paying Climbers</h2>
+      <div id="adduserpayment">
+        <form id="payform">
+          <label for="netid">Enter Climber NetID:</label>
+          <input type="text" id="netid">
+          <input type="submit" value="Enter">
+        </form>
+      </div>
       <button class="btn btn-primary" onclick="downloadcsv();">Download Signin CSV</button>
     </div>
     <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-app.js"></script>
@@ -58,6 +66,13 @@
         adminsignin();
       } 
       form.addEventListener('submit', handleForm);
+
+      var paymentform = document.getElementById("payform");
+      function handlePayment(event) { 
+        event.preventDefault(); 
+        addpayinguser();
+      } 
+      form.addEventListener('submit', handlePayment);
     </script>
   </body>
   
