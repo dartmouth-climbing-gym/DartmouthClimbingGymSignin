@@ -275,6 +275,7 @@ async function addpayinguser() {
       doc.ref.update({monitor_approved: true});
     });
     alert("User Approved!");
+    document.getElementById("netid").value="";
   }
 }
 
