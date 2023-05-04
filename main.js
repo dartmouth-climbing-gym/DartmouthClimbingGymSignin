@@ -134,17 +134,22 @@ async function anon_signout(timein) {
   });
 }
 
+/**
+ * Signs out all climbers currently signed in on the public webpage - updates firestore
+ * @returns nothing
+ * @author Sebastian Frazier
+ */
 async function signout_all() {
-  const ref = await db.collection(PUBLIC_REF).get();
+  const ref = await db.collection(PUBLIC_REF).get(); // Public climbers sheet
   const snapshot = await db.collection(USAGE_LOG_REF).where('signout', '==', 0).get();
   const time = Date.now();
 
   await ref.forEach(doc => {
-    anon_signout(doc.data().signin)
+    anon_signout(doc.data().signin) // signout each climber currently signed in
   })
 
   await snapshot.forEach(doc => {
-      doc.ref.update({signout: time});
+      doc.ref.update({signout: time}); // Update the firebase
   });
   alert("Signed out all!")
   await settable(); // give time to load user
@@ -177,42 +182,42 @@ async function settable() {
   document.getElementById("climbers").innerHTML = table;
 }
 
-/*
-Set values for OPO payment table on DCG Website - do not alter firestore values
-@Sebastian Frazier
+/**
+* @function - Set values for OPO payment table on DCG Website - do not alter firestore values
+* @returns nothing
+* @author Sebastian Frazier
  */
 async function setopotable() {
-  const ref = db.collection(USERS_REF);
+  const ref = db.collection(USERS_REF); // All known users
   snapshot = await ref.get();
-  var table = "<tr><th>Net ID</th><th>Name</th><th>Approved</th></tr>";
+  var table = "<tr><th>Net ID</th><th>Name</th><th>Approved</th></tr>"; //table of climbers approved by Monitor
   snapshot.forEach(doc => {
-    var tempnetid = doc.data().netid
+    tempnetid = doc.data().netid
     getName(tempnetid).then(name => {
-      table += "<tr><td>" + tempnetid + "</td><td>" + name + "</td>" + "<td><input class='form-check paymentcheck' type='checkbox' onchange=opoapprove('"+tempnetid+"') "+(doc.data().opo_approved==true ? "checked": "")+" ></td></tr>";
-      console.log(table);
+      table += "<tr><td>" + tempnetid + "</td><td>" + name + "</td><td>" + "</td><input type='checkbox' onchange=opoapprove(tempnetid) ><td>"; // Update table on webpage
       document.getElementById("payments").innerHTML = table;
     });
   });
   document.getElementById("payments").innerHTML = table;
 }
-/*
-@author: Sebastian Frazier
-@param netid - netid of user being (un)approved for payment
-
-Sets payment approval status of user as true or false
+/**
+* @function: Sets payment approval status of user as true or false in firestore
+* @param netid - netid of user being (un)approved for payment
+* @returns nothing
+* @author Sebastian Frazier
  */
 async function opoapprove(netid) {
-  const ref = db.collection(USERS_REF);
+  const ref = db.collection(USERS_REF); // All users
   snapshot = await ref.where("netid", "==", netid).where("monitor_approved", "==", true).get();
 
   if (snapshot.empty) {
-    alert("user not found!");
+    alert("user not found!"); // check if no approved climbers
   }
   else {
     snapshot.forEach(doc => {
-      if (doc.data().opo_approved !== undefined) doc.ref.update({opo_approved: !doc.data().opo_approved})
+      if (doc.data().opo_approved !== undefined) doc.ref.update({opo_approved: !doc.data().opo_approved}) // If climber has no value & is checked off by OPO, approve them
 
-      else doc.ref.update({opo_approved: true})
+      else doc.ref.update({opo_approved: true}) // If climber has a value, reverse it on click (allows approval and unapproval).
       });
   }
 }
@@ -229,13 +234,18 @@ async function settablecount() {
   document.getElementById("num").innerHTML = "Active Climbers: " + snapshot.size;
 }
 
+/**
+ * Downloads CSV file of all signins/outs of the climbing gym for OPO usage
+ * @returns nothing
+ * @author Luc Cote
+ */
 async function downloadcsv() {
-  const ref = db.collection(USAGE_LOG_REF);
-  const snapshot = await ref.where("signout", "!=", 0).get();
-  var csv = "netid,signin,signout\n";
+  const ref = db.collection(USAGE_LOG_REF); // all known signins
+  const snapshot = await ref.where("signout", "!=", 0).get(); // only collect where users have signed out too
+  var csv = "netid,signin,signout\n"; // create csv file
   snapshot.forEach(doc => {
     try{
-      csv += doc.data().netid + "," + new Date(doc.data().signin).toLocaleString().replaceAll(',','') + "," + new Date(doc.data().signout).toLocaleString().replaceAll(',','') + "\n";
+      csv += doc.data().netid + "," + new Date(doc.data().signin).toLocaleString().replaceAll(',','') + "," + new Date(doc.data().signout).toLocaleString().replaceAll(',','') + "\n"; // Add climber data to a CSV file
     } catch(err) {
       console.log(err);
     }
@@ -275,7 +285,6 @@ async function addpayinguser() {
       doc.ref.update({monitor_approved: true});
     });
     alert("User Approved!");
-    document.getElementById("netid").value="";
   }
 }
 
@@ -292,6 +301,12 @@ async function adminsignin() {
   }
 }
 
+/**
+ * Create & download a CSV file from a given data source.
+ * @param csv_data
+ * @returns nothing
+ * @author _
+ */
 function downloadCSVFile(csv_data) {
  
   // Create CSV file object and feed our
