@@ -37,12 +37,19 @@ async function fbusersignin(email, password) {
   });
 }
 
+/**
+ * Handle signing waiver for new users
+ * @returns nothing
+ * @author Luc Cote & Sebastian Frazier (5/5/22 added dropdown menu)
+ */
 async function signWaiver() {
   const netid = document.getElementById("netid").value.toLowerCase();
   const name = document.getElementById("name").value;
+  const year = document.getElementById("year").value; // Added 5/8/23 by @Sebastian Frazier
   const data = {
     netid: netid,
-    name: name
+    name: name,
+    year: year // See: above
   }
   await db.collection(USERS_REF).doc(netid).set(data);
   alert("Signed Waiver!");
