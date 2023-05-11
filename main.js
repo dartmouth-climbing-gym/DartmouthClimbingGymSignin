@@ -19,6 +19,8 @@ var user = null;
 const app = firebase.initializeApp(firebaseConfig);
 const db = firebase.firestore();
 
+const netidpattern = new RegExp('f00[0-9][a-z0-9]{3}');
+
 firebase.auth().onAuthStateChanged((user) => {
   if(user) loadpage();
 });
@@ -46,6 +48,10 @@ async function signWaiver() {
   const netid = document.getElementById("netid").value.toLowerCase();
   const name = document.getElementById("name").value;
   const year = document.getElementById("year").value; // Added 5/8/23 by @Sebastian Frazier
+  if (year === "undergraduate" && !netidpattern.test(netid)) {
+    alert("Please use a real net id.");
+    return;
+  }
   const data = {
     netid: netid,
     name: name,
