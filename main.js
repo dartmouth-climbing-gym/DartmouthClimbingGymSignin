@@ -195,13 +195,15 @@ async function settable() {
 * @author Sebastian Frazier
  */
 async function setopotable() {
+  console.log("Called");
   const ref = db.collection(USERS_REF); // All known users
   snapshot = await ref.get();
   var table = "<tr><th>Net ID</th><th>Name</th><th>Approved</th></tr>"; //table of climbers approved by Monitor
   snapshot.forEach(doc => {
-    tempnetid = doc.data().netid
+    var tempnetid = doc.data().netid
+    console.log(tempnetid);
     getName(tempnetid).then(name => {
-      table += "<tr><td>" + tempnetid + "</td><td>" + name + "</td><td>" + "</td><input type='checkbox' onchange=opoapprove(tempnetid) ><td>"; // Update table on webpage
+      table += "<tr><td>" + tempnetid + "</td><td>" + name + "</td>" + "<td><input class='form-check paymentcheck' type='checkbox' onchange=opoapprove('"+tempnetid+"') "+(doc.data().opo_approved==true ? "checked": "")+" ></td></tr>";
       document.getElementById("payments").innerHTML = table;
     });
   });
@@ -222,11 +224,19 @@ async function opoapprove(netid) {
   }
   else {
     snapshot.forEach(doc => {
-      if (doc.data().opo_approved !== undefined) doc.ref.update({opo_approved: !doc.data().opo_approved}) // If climber has no value & is checked off by OPO, approve them
+      if (doc.data().opo_approved !== undefined) doc.ref.update({opo_approved: !doc.data().opo_approved}); // If climber has no value & is checked off by OPO, approve them
 
-      else doc.ref.update({opo_approved: true}) // If climber has a value, reverse it on click (allows approval and unapproval).
+      else doc.ref.update({opo_approved: true}); // If climber has a value, reverse it on click (allows approval and unapproval).
       });
   }
+}
+
+/**
+ * @author Sebastian Frazier
+ * @returns nothing
+ */
+async function resetallapprovals() {
+
 }
 
 async function settablecount() {
