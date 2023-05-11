@@ -195,13 +195,11 @@ async function settable() {
 * @author Sebastian Frazier
  */
 async function setopotable() {
-  console.log("Called");
   const ref = db.collection(USERS_REF); // All known users
-  snapshot = await ref.get();
+  snapshot = await ref.where("monitor_approved", "==", true).get();
   var table = "<tr><th>Net ID</th><th>Name</th><th>Approved</th></tr>"; //table of climbers approved by Monitor
   snapshot.forEach(doc => {
     var tempnetid = doc.data().netid
-    console.log(tempnetid);
     getName(tempnetid).then(name => {
       table += "<tr><td>" + tempnetid + "</td><td>" + name + "</td>" + "<td><input class='form-check paymentcheck' type='checkbox' onchange=opoapprove('"+tempnetid+"') "+(doc.data().opo_approved==true ? "checked": "")+" ></td></tr>";
       document.getElementById("payments").innerHTML = table;
@@ -220,7 +218,7 @@ async function opoapprove(netid) {
   snapshot = await ref.where("netid", "==", netid).where("monitor_approved", "==", true).get();
 
   if (snapshot.empty) {
-    alert("user not found!"); // check if no approved climbers
+    alert("users not found!"); // check if no approved climbers
   }
   else {
     snapshot.forEach(doc => {
@@ -232,11 +230,21 @@ async function opoapprove(netid) {
 }
 
 /**
+ * Reset all termly approvals for both monitor and OPO
  * @author Sebastian Frazier
  * @returns nothing
  */
 async function resetallapprovals() {
+  if(!confirm("Are you sure you want to reset all user payment approvals?")) return;
+  const ref = db.collection(USERS_REF); // All users
+  const snapshot = await ref.where("monitor_approved", "==", true).get();
 
+  snapshot.forEach(doc => {
+    doc.ref.update({opo_approved: false}); // Set approval status to null
+    doc.ref.update({monitor_approved: false})
+  });
+
+  document.getElementById("payments").innerHTML = "<tr><th>Net ID</th><th>Name</th><th>Approved</th></tr>";
 }
 
 async function settablecount() {
