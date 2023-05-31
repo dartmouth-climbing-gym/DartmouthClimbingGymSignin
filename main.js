@@ -274,8 +274,8 @@ async function settablecount() {
 
 /**
  * Downloads CSV file of all signins/outs of the climbing gym for OPO usage
- * @returns nothing
  * @author Luc Cote
+ * @returns nothing
  */
 async function downloadcsv() {
   const ref = db.collection(USAGE_LOG_REF); // all known signins
@@ -326,6 +326,11 @@ async function addpayinguser() {
   }
 }
 
+/**
+ * Add day pass containing current date and netid of user to daypass firestore collection through admin webpage.
+ * @returns nothing
+ * @author Sebastian Frazier
+ */
 async function adddaypass() {
   const netid = document.getElementById("netid").value.toLowerCase();
   const ref = db.collection(USERS_REF);
