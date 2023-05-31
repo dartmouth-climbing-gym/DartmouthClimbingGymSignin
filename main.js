@@ -326,6 +326,25 @@ async function addpayinguser() {
   }
 }
 
+async function adddaypass() {
+  const netid = document.getElementById("netid").value.toLowerCase();
+  const ref = db.collection(USERS_REF);
+  const snapshot = await ref.where('netid', '==', netid).get();
+  if (snapshot.empty) {
+    alert("user not found!");
+  }
+  else {
+    const date = new Date();
+    date.setHours(0, 0, 0,0);
+    const data = {
+      netid: netid,
+      date: date
+    };
+    db.collection(DAYPASS_REF).add(data);
+    alert("Day Pass Approved!");
+  }
+}
+
 async function adminsignin() {
   const upw = document.getElementById("password").value;
   const success = await fbusersignin("climbinggym@dartmouth.edu", upw);
