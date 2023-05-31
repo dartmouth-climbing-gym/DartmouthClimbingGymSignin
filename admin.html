@@ -42,8 +42,8 @@
       <div id="adduserpayment">
         <form id="payform">
           <select name="pass" id="pass" class="form-control">
-            <option value="undergraduate">Day Pass</option>
-            <option value="community member">Term Pass</option>
+            <option value="day">Day Pass</option>
+            <option value="term">Term Pass</option>
           </select> <br>
           <label for="netid">Enter Climber NetID:</label><br>
           <input class="form-control-md" type="text" id="netid"><br>
@@ -75,7 +75,12 @@
       var paymentform = document.getElementById("payform");
       function handlePayment(event) { 
         event.preventDefault(); 
-        addpayinguser();
+        const pass = document.getElementById("pass").value;
+        if (pass == "day") {
+          adddaypass();
+        } else {
+          addpayinguser();
+        }
       } 
       paymentform.addEventListener('submit', handlePayment);
     </script>
