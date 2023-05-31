@@ -60,3 +60,9 @@ table {
   margin-top: 3vh;
   width: 40vw;
 }
+
+#pass {
+  width: 18vw;
+  margin-left: auto;
+  margin-right: auto;
+}

@@ -12,6 +12,7 @@ const firebaseConfig = {
 const USAGE_LOG_REF = "usage_log_test";
 const PUBLIC_REF = "public_test";
 const USERS_REF = "users_test";
+const DAYPASS_REF = "day_pass_test"
 
 var user = null;
 
@@ -77,7 +78,13 @@ async function checkApproved(netid) {
   if (!doc.exists) {
     return false;
   } else {
-    return (typeof(doc.data().monitor_approved) != 'undefined') && (doc.data().monitor_approved);
+    if ((typeof(doc.data().monitor_approved) != 'undefined') && (doc.data().monitor_approved)) {
+      return true;
+    }
+    const date = new Date();
+    date.setHours(0, 0, 0, 0);
+    const snapshot = await db.collection(DAYPASS_REF).where("userid", '==', netid).where("date", '==', date).get();
+    return !snapshot.empty;
   }
 }
 
