@@ -75,7 +75,12 @@
       var paymentform = document.getElementById("payform");
       function handlePayment(event) { 
         event.preventDefault(); 
-        addpayinguser();
+        const pass = document.getElementById("pass").value.toLowerCase();
+        if (pass == "day pass") {
+          adddaypass();
+        } else {
+          addpayinguser();
+        }
       } 
       paymentform.addEventListener('submit', handlePayment);
     </script>
