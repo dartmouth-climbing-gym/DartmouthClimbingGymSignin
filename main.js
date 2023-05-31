@@ -83,7 +83,7 @@ async function checkApproved(netid) {
     }
     const date = new Date();
     date.setHours(0, 0, 0, 0);
-    const snapshot = await db.collection(DAYPASS_REF).where("userid", '==', netid).where("date", '==', date).get();
+    const snapshot = await db.collection(DAYPASS_REF).where("netid", '==', netid).where("date", '==', date).get();
     return !snapshot.empty;
   }
 }
