@@ -58,16 +58,6 @@ async function getName(netid) {
   }
 }
 
-async function checkApproved(netid) {
-  const userdoc = db.collection(USERS_REF).doc(netid);
-  const doc = await userdoc.get();
-  if (!doc.exists) {
-    return false;
-  } else {
-    return (typeof(doc.data().monitor_approved) != 'undefined') && (doc.data().monitor_approved);
-  }
-}
-
 async function getpw() {
   const ref = db.collection('admin').doc('identification');
   const doc = await ref.get();
@@ -86,11 +76,7 @@ async function signinout(){
     alert("Please sign the waiver first!");
     return false;
   }
-  const approved = await checkApproved(netid);
-  if(!approved) {
-    alert("Please have a monitor approve your payment status first!");
-    return false;
-  }
+  
   const ref = db.collection(USAGE_LOG_REF);
   const snapshot = await ref.where('netid', '==', netid).where('signout', '==', 0).get();
   if (snapshot.empty) {
@@ -177,46 +163,6 @@ async function settable() {
   document.getElementById("climbers").innerHTML = table;
 }
 
-/*
-Set values for OPO payment table on DCG Website - do not alter firestore values
-@Sebastian Frazier
- */
-async function setopotable() {
-  const ref = db.collection(USERS_REF);
-  snapshot = await ref.get();
-  var table = "<tr><th>Net ID</th><th>Name</th><th>Approved</th></tr>";
-  snapshot.forEach(doc => {
-    var tempnetid = doc.data().netid
-    getName(tempnetid).then(name => {
-      table += "<tr><td>" + tempnetid + "</td><td>" + name + "</td>" + "<td><input class='form-check paymentcheck' type='checkbox' onchange=opoapprove('"+tempnetid+"') "+(doc.data().opo_approved==true ? "checked": "")+" ></td></tr>";
-      console.log(table);
-      document.getElementById("payments").innerHTML = table;
-    });
-  });
-  document.getElementById("payments").innerHTML = table;
-}
-/*
-@author: Sebastian Frazier
-@param netid - netid of user being (un)approved for payment
-
-Sets payment approval status of user as true or false
- */
-async function opoapprove(netid) {
-  const ref = db.collection(USERS_REF);
-  snapshot = await ref.where("netid", "==", netid).where("monitor_approved", "==", true).get();
-
-  if (snapshot.empty) {
-    alert("user not found!");
-  }
-  else {
-    snapshot.forEach(doc => {
-      if (doc.data().opo_approved !== undefined) doc.ref.update({opo_approved: !doc.data().opo_approved})
-
-      else doc.ref.update({opo_approved: true})
-      });
-  }
-}
-
 async function settablecount() {
   const ref = db.collection(PUBLIC_REF);
   const snapshot = await ref.get();
@@ -263,21 +209,6 @@ async function addtocount(num) {
   await db.collection(PUBLIC_REF).doc("info").set(data);
 }
 
-async function addpayinguser() {
-  const netid = document.getElementById("netid").value.toLowerCase();
-  const ref = db.collection(USERS_REF);
-  const snapshot = await ref.where('netid', '==', netid).get();
-  if (snapshot.empty) {
-    alert("user not found!");
-  }
-  else {
-    snapshot.forEach(doc => {
-      doc.ref.update({monitor_approved: true});
-    });
-    alert("User Approved!");
-    document.getElementById("netid").value="";
-  }
-}
 
 async function adminsignin() {
   const upw = document.getElementById("password").value;
