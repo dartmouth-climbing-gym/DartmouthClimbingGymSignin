@@ -12,6 +12,7 @@
 
     <title>Sign In</title>
   </head>
+
   <body>
     <div id="adminsignin">
       <form id="adminform">
@@ -20,10 +21,15 @@
         <input type="submit" value="Enter">
       </form>
     </div>
+
+    <!-- Main sign in form -->
     <div id="signin" style="display:none;">
+      <!-- Logo -->
       <div id="header">
         <img src="climbing_gym_logo.png" width="600" alt="logo" />
-      </div> 
+      </div>
+
+      <!-- Sign in -->
       <form id="signinform">
         <div class="form-group">
           <label for="name">Enter Net ID:</label>
@@ -31,18 +37,24 @@
           <input type="submit" class="btn btn-primary" value="Sign In/Out">
         </div>
       </form><br><br><br>
+
+      <!-- Link to Waiver -->
       <p>Have you signed the <a href="waiver.html">waiver</a> already?</p>
     </div>
+
+    <!-- Scripts -->
     <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-app.js"></script>
     <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-firestore.js"></script>
     <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-auth.js"></script>
     <script src="./main.js"></script>
     <script>
       var form = document.getElementById("adminform");
+
       function handleForm(event) { 
         event.preventDefault(); 
         adminsignin();
       } 
+
       form.addEventListener('submit', handleForm);
 
       async function loadpage() {
@@ -59,6 +71,7 @@
         form.addEventListener('submit', handleForm);
       }
     </script>
+
   </body>
   
 </html>
