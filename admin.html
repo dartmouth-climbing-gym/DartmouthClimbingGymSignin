@@ -12,7 +12,9 @@
 
     <title>DCG Admin</title>
   </head>
+
   <body>
+    <!-- Sign into admin page -->
     <div id="signin">
       <form id="adminform">
         <label for="password">Enter Admin Password:</label>
@@ -20,27 +22,36 @@
         <input type="submit" value="Enter">
       </form>
     </div>
+
     <div id="admin" style="display: none;">
+
       <div id="header">
         <img src="climbing_gym_logo.png" width="600" alt="logo" />
       </div> 
+
+      <!-- Display information + main content -->
       <div>
-        <h4>Active Climbers:</h4>
-      <table id="climbers">
-        <tr>
-          <th>Net ID</th>
-          <th>Name</th>
-          <th>Sign In Time</th>
-          <th>Time Climbing</th>
-        </tr>
-      </table>
+        <h4">Active Climbers:</h4>
+
+        <table id="climbers">
+          <tr>
+            <th>Net ID</th>
+            <th>Name</th>
+            <th>Sign In Time</th>
+            <th>Time Climbing</th>
+          </tr>
+        </table>
+
         <br>
         <button class="btn btn-primary" onclick="signout_all();">Sign Out All</button>
       </div>
+
       <br><br>
       <br><br><br>
       <button class="btn btn-primary" onclick="downloadcsv();">Download Signin CSV</button>
     </div>
+
+    <!-- Scripts -->
     <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-app.js"></script>
     <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-firestore.js"></script>
     <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-auth.js"></script>
@@ -53,11 +64,13 @@
         settable();
         // setInterval(settable, 60000);
       }
+
       var form = document.getElementById("adminform");
       function handleForm(event) { 
         event.preventDefault(); 
         adminsignin();
       } 
+
       form.addEventListener('submit', handleForm);
 
     </script>
