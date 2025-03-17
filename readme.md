@@ -4,9 +4,20 @@ This is a web-app for managing + facilitating signing in and out of the Dartmout
 Climbing Gym. It uses Firebase & Firestore for ___.
 
 ## Files
+
+### html Pages
+
 - **index.html**:   Main sign in page & interface for use in person. 
 - **count.html**:   Page to display the count of active climbers to anyone with
                     the link to the page.
-- **waiver.html**: 
-- **admin.html**: Admin page for managing/viewing active climbers. 
-- **404.html**: 404 error page.
+- **waiver.html**:  Waiver form page. 
+- **admin.html**:   Admin page for managing/viewing active climbers. 
+- **404.html**:     404 error page.
+
+### Other
+
+- **main.js**:          JavaScript file for using Firebase & Firestore.
+- **style.css**:        CSS file for styling.
+- **firebase.json**:    Firebase ___.
+- **.firebaserc**:      Firebase ___.
+- **.gitignore**:       Git ignore file.
