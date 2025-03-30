@@ -14,6 +14,9 @@ h1 {
 
 .btn-primary {
   background-color: #00693e;
+  width: 12.5rem;
+  height: 2.5rem;
+  padding: auto;
 }
 
 .paymentcheck {
