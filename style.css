@@ -13,7 +13,8 @@ h1 {
 }
 
 .btn-primary {
-  background-color: #00693e;
+  /* background-color: #00693e; */
+  background-color: gray;
   width: 12.5rem;
   height: 2.5rem;
   padding: auto;
