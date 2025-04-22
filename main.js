@@ -249,7 +249,7 @@ async function addtocount(num) {
 
 async function adminsignin() {
   const upw = document.getElementById("password").value;
-  const success = await fbusersignin("climbing.gym@dartmouth.edu", upw);
+  const success = await fbusersignin("climbinggym@dartmouth.edu", upw);
   if(success) {
     document.getElementById("admin").style.display = "block";
     document.getElementById("signin").style.display = "none";
