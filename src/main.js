@@ -120,6 +120,30 @@ async function anon_signout(timein) {
   });
 }
 
+async function signout_individual(netid, timein) {
+  const usageRef = db.collection(USAGE_LOG_REF);
+  const snapshot = await usageRef
+    .where('netid', '==', netid)
+    .where('signin', '==', timein)
+    .where('signout', '==', 0)
+    .get();
+
+  const time = Date.now();
+
+  if (snapshot.empty) {
+    alert(`No active session found for ${netid}`);
+    return;
+  }
+
+  snapshot.forEach(doc => {
+    doc.ref.update({ signout: time });
+  });
+
+  await anon_signout(timein);
+  alert(`Signed out ${netid}`);
+  await settable(); // refresh the table
+}
+
 async function signout_all() {
   const ref = await db.collection(PUBLIC_REF).get();
   const snapshot = await db.collection(USAGE_LOG_REF).where('signout', '==', 0).get();
@@ -150,16 +174,29 @@ async function signin(netid, time) {
   // const name = getName(netid);
 }
 
+// Updated with signout one
 async function settable() {
   const ref = db.collection(USAGE_LOG_REF);
   const snapshot = await ref.where("signout", "==", 0).get();
-  var table = "<tr><th>Net ID</th><th>Name</th><th>Sign In Time</th><th>Time Climbing</th></tr>";
+  var table = "<tr><th>Net ID</th><th>Name</th><th>Sign In Time</th><th>Time Climbing</th><th>Actions</th></tr>";
+
   snapshot.forEach(doc => {
-    getName(doc.data().netid).then(name => {
-      table += "<tr><td>" + doc.data().netid + "</td><td>" + name + "</td><td>" + new Date(doc.data().signin).toLocaleTimeString()+"</td><td>" + Math.round((Date.now()-doc.data().signin)/60000) + " minutes</td></tr>";
+    const netid = doc.data().netid;
+    const timein = doc.data().signin;
+
+    getName(netid).then(name => {
+      table += `
+        <tr>
+          <td>${netid}</td>
+          <td>${name}</td>
+          <td>${new Date(timein).toLocaleTimeString()}</td>
+          <td>${Math.round((Date.now() - timein) / 60000)} minutes</td>
+          <td><button class="btn btn-danger btn-sm" onclick="signout_individual('${netid}', ${timein})">Sign Out</button></td>
+        </tr>`;
       document.getElementById("climbers").innerHTML = table;
     });
   });
+
   document.getElementById("climbers").innerHTML = table;
 }
 
@@ -212,7 +249,7 @@ async function addtocount(num) {
 
 async function adminsignin() {
   const upw = document.getElementById("password").value;
-  const success = await fbusersignin("climbinggym@dartmouth.edu", upw);
+  const success = await fbusersignin("climbing.gym@dartmouth.edu", upw);
   if(success) {
     document.getElementById("admin").style.display = "block";
     document.getElementById("signin").style.display = "none";
