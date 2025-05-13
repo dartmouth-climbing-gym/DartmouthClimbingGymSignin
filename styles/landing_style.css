@@ -491,21 +491,42 @@ footer li a {
     }
 }
 
+/* Hidden admin button */
 #admin-button {
-    position: fixed;
-    top: 8px;
-    right: 8px;
-    width: 16px;
-    height: 16px;
-    opacity: 0.05;
-    z-index: 9999;
-    border-radius: 50%;
-    background-color: #1b5e20;
-    text-indent: -9999px;
-    transition: opacity 0.3s ease;
+  position: fixed;
+  top: 8px;
+  right: 8px;
+  width: 16px;
+  height: 16px;
+  opacity: 0.05;
+  z-index: 9999;
+  border-radius: 50%;
+  background-color: #1b5e20;
+  text-indent: -9999px;
+  transition: opacity 0.3s ease;
 }
-  
+
 #admin-button:hover {
-    opacity: 0.3;
-    cursor: pointer;
+  opacity: 0.3;
+  cursor: pointer;
+}
+
+/* Hidden signin button (just below admin) */
+#signin-button {
+  position: fixed;
+  top: 32px;  /* just below the admin button */
+  right: 8px;
+  width: 16px;
+  height: 16px;
+  opacity: 0.05;
+  z-index: 9999;
+  border-radius: 50%;
+  background-color: #1b5e20;
+  text-indent: -9999px;
+  transition: opacity 0.3s ease;
+}
+
+#signin-button:hover {
+  opacity: 0.3;
+  cursor: pointer;
 }

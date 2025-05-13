@@ -145,18 +145,22 @@ async function signout_individual(netid, timein) {
 }
 
 async function signout_all() {
+  const confirmation = confirm("You are about to sign out everyone. Are you sure?");
+  if (!confirmation) return;
+
   const ref = await db.collection(PUBLIC_REF).get();
   const snapshot = await db.collection(USAGE_LOG_REF).where('signout', '==', 0).get();
   const time = Date.now();
 
   await ref.forEach(doc => {
-    anon_signout(doc.data().signin)
-  })
+    anon_signout(doc.data().signin);
+  });
 
   await snapshot.forEach(doc => {
-      doc.ref.update({signout: time});
+    doc.ref.update({ signout: time });
   });
-  alert("Signed out all!")
+
+  alert("Signed out all!");
   await settable(); // give time to load user
 }
 
