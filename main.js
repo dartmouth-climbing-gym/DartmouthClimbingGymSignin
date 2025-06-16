@@ -9,9 +9,9 @@ const firebaseConfig = {
   appId: "1:862046563935:web:3e09993dd977d85277b5ea"
 };
 
-const USAGE_LOG_REF = "usage_log_test";
-const PUBLIC_REF = "public_test";
-const USERS_REF = "users_test";
+const USAGE_LOG_REF = "usage_log";
+const PUBLIC_REF = "public";
+const USERS_REF = "users";
 
 var user = null;
 let lastSigned = 0;
