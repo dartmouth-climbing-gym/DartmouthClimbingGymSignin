@@ -287,7 +287,7 @@ p {
 
 /* ------------------------------------------------------------------------- */
 /* NEWSLETTER */
-#newsletter {
+#groupme {
     display: flex;
     flex-direction: column;
     padding: 1rem;
@@ -304,21 +304,21 @@ p {
     margin: 1rem;
 }
 
-.newsletter input[type="text"] {
-    width: 25%;
-    padding: 1rem;
-    font-size: 1rem;
-    border: 0.1rem solid var(--forest-green);
-    border-radius: 0.25rem;
-    font-family: "Jost", sans-serif;
+#groupme .section-header,
+#groupme .section-subtitle {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    gap: 1rem;
+    margin-left: 0;
+    width: 100%;
 }
 
-#newsletter .section-header,
-#newsletter .section-subtitle {
-    margin-left: 0;
-    align-self:center;
-    justify-content: flex-end;
-    width: fit-content;
+#groupme .btn {
+    font-size: 1.25rem;
+    width: fit-content;;
+    padding: .5rem;
 }
 
 
