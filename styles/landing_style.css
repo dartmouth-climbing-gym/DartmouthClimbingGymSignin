@@ -17,7 +17,6 @@
 
 body {
     color: rgb(5, 5, 5);
-    /* background-color: var(--dart-green); */
     font-family: "Jost", sans-serif;
 }
 
@@ -46,7 +45,7 @@ p {
 }
 
 .logo {
-    height: 5rem;
+    height: 3rem;
 }
 
 .logo:hover {
@@ -77,6 +76,7 @@ p {
 /* DESKTOP NAVIGATION */
 #desktop-nav {
     display: flex;
+    flex-direction: row;
     width: 100%;
     position: absolute;
     justify-content: space-around;
@@ -87,8 +87,9 @@ p {
 .nav-links {
     display: flex;
     list-style: none;
-    gap: 2rem;
-    font-size: 1.5rem;
+    gap: 0.75rem;
+    font-size: 1.25rem;
+    font-weight: 500;
 }
 
 #desktop-nav .logo {
@@ -98,7 +99,7 @@ p {
 .nav-links a {
     color: var(--forest-green);
     padding: 0.25rem 0.75rem;
-    border-radius: 0.5rem;
+    border-radius: 0.25rem;
     background-color: var(--spring-green);
     text-decoration: none;
     transition: all 0.1s ease-in-out;
@@ -284,19 +285,13 @@ p {
     font-weight: 700;
 }
 
-
-
-/* —— Hours table: center everything and give equal padding —— */
-#hours-of-operation {
-  width: 100%;
-  max-width: 600px;
-  margin: 0 auto;
-  border-collapse: collapse;
-}
-#hours-of-operation th,
-#hours-of-operation td {
-  text-align: center;
-  padding: 0.75rem 1rem;
+/* ------------------------------------------------------------------------- */
+/* NEWSLETTER */
+#groupme {
+    display: flex;
+    flex-direction: column;
+    padding: 1rem;
+    align-items: center;
 }
 
 /* —— GroupMe section: consistent flex layout and text alignment —— */
@@ -326,11 +321,25 @@ p {
   margin: 0 auto;
 }
 
-/* —— (Optional) make the background & text color consistent —— */
-#groupme {
-  background: transparent;
-  color: inherit;
+#groupme .section-header,
+#groupme .section-subtitle {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    gap: 1rem;
+    margin-left: 0;
+    width: 100%;
 }
+
+#groupme a {
+    font-size: 1.25rem;
+    width: fit-content;;
+    padding: .5rem;
+    text-decoration: none;
+}
+
+
 
 /* ------------------------------------------------------------------------- */
 /* FOOTER */
@@ -344,8 +353,8 @@ footer {
 }
 
 footer .logo {
-    padding-top: 1.5rem;
-    height: 5rem;
+    padding: 1rem 0rem;
+    height: 2.5rem;
     filter: invert(1);
 }
 

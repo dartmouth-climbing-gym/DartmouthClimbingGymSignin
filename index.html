@@ -13,7 +13,6 @@
   <a href="./pages/admin.html" id="admin-button" title="admin" target="_blank"></a>
   <a href="./pages/signin.html" id="signin-button" title="signin" target="_blank"></a>
 
-  <!-- NAVIGATION (removed Live Capacity link) -->
   <nav id="desktop-nav">
     <img class="logo" src="./media/climbing-gym-logo.png" alt="Dartmouth Climbing Gym Logo">
     <ul class="nav-links">
@@ -50,11 +49,12 @@
       <p>Come and climb with us, plan your first visit today</p>
       <button class="btn" onclick="location.href='./pages/visitus.html'">Visit Us</button>
     </div>
+
     <!-- Capacity overlay, off to the right -->
     <div id="capacity-overlay"
          style="
            position: absolute;
-           top: 1rem;
+           top: 5rem;
            right: 1rem;
            background: rgba(0,0,0,0.6);
            color: #fff;
@@ -134,21 +134,22 @@
     </div>
   </section>
 
-  <!-- GROUPME SIGNUP + QR CODE -->
-  <section id="groupme" style="text-align: center; padding: 4rem 1rem; display: flex; align-items: center; justify-content: center; gap: 2rem;">
-    <div>
-      <h1 class="section-header" style="font-size: 2.5rem; margin-bottom: 1rem;">
-        Sign up for our GroupMe
-      </h1>
-      <p class="section-subtitle" style="font-size: 1.2rem; margin-bottom: 2rem;">
-        For the latest news, updates, hours, and events for the term!
-      </p>
+  <section id="groupme">
+    <h1 class="section-header">
+      Sign up for our GroupMe
+    </h1>
+    <p class="section-subtitle">
+      For the latest news, updates, hours, and events for the term!
       <a href="https://groupme.com/join_group/85347987/5H4gayRj"
-         class="btn btn-primary"
-         style="font-size: 1.2rem; padding: 0.75rem 2rem; border-radius: 0.5rem;">
+        class="btn btn-primary"
+        href='https://groupme.com/join_group/85347987/5H4gayRj'
+        target="_blank"
+        rel="noopener noreferrer"
+        >
         Join the GroupMe
       </a>
-    </div>
+    </p>
+
     <!-- New QR code -->
     <div>
       <img src="./media/groupme_qr.png"
