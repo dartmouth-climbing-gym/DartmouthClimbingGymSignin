@@ -76,6 +76,8 @@ p {
 /* DESKTOP NAVIGATION */
 #desktop-nav {
     display: flex;
+    flex-direction: row;
+    margin: 0rem;
     width: 100%;
     position: absolute;
     justify-content: space-around;
@@ -284,8 +286,6 @@ p {
     font-weight: 700;
 }
 
-
-
 /* ------------------------------------------------------------------------- */
 /* NEWSLETTER */
 #groupme {
@@ -295,14 +295,26 @@ p {
     align-items: center;
 }
 
-.newsletter {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    align-self: center;
-    width: 75%;
-    gap: 1rem;
-    margin: 1rem;
+/* —— GroupMe section: consistent flex layout and text alignment —— */
+#groupme {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
+  gap: 2rem;
+  padding: 4rem 1rem;
+  text-align: left;
+}
+
+#groupme > div {
+  flex: 1 1 240px;
+  max-width: 400px;
+}
+
+#groupme img {
+  display: block;
+  max-width: 200px;
+  margin: 0 ;
 }
 
 #groupme .section-header,
@@ -499,7 +511,7 @@ footer li a {
   right: 8px;
   width: 16px;
   height: 16px;
-  opacity: 0.05;
+  opacity: 0;
   z-index: 9999;
   border-radius: 50%;
   background-color: #1b5e20;
@@ -519,7 +531,7 @@ footer li a {
   right: 8px;
   width: 16px;
   height: 16px;
-  opacity: 0.05;
+  opacity: 0;
   z-index: 9999;
   border-radius: 50%;
   background-color: #1b5e20;
@@ -530,4 +542,20 @@ footer li a {
 #signin-button:hover {
   opacity: 0.3;
   cursor: pointer;
+}
+
+
+/* —— Let the “Join the GroupMe” button size to its content —— */
+#groupme .btn {
+  width: auto;
+}
+
+/* —— Center everything inside each column —— */
+#groupme > div {
+  text-align: center;
+}
+
+#desktop-nav,
+#hamburger-nav {
+  z-index: 1000;    /* anything higher than the overlay’s z-index */
 }
