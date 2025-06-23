@@ -17,7 +17,6 @@
 
 body {
     color: rgb(5, 5, 5);
-    /* background-color: var(--dart-green); */
     font-family: "Jost", sans-serif;
 }
 
@@ -46,7 +45,7 @@ p {
 }
 
 .logo {
-    height: 5rem;
+    height: 3rem;
 }
 
 .logo:hover {
@@ -336,8 +335,8 @@ footer {
 }
 
 footer .logo {
-    padding-top: 1.5rem;
-    height: 5rem;
+    padding: 1rem 0rem;
+    height: 2.5rem;
     filter: invert(1);
 }
 
