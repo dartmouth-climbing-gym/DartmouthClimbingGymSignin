@@ -9,14 +9,16 @@
 </head>
 
 <body>
-    <a href="./pages/admin.html" id="admin-button" title="admin" target="_blank"></a>
-    <a href="./pages/signin.html" id="signin-button" title="signin" target="_blank"></a>
+  <!-- ADMIN / SIGNIN HIDDEN BUTTONS -->
+  <a href="./pages/admin.html" id="admin-button" title="admin" target="_blank"></a>
+  <a href="./pages/signin.html" id="signin-button" title="signin" target="_blank"></a>
+
+  <!-- NAVIGATION (removed Live Capacity link) -->
   <nav id="desktop-nav">
     <img class="logo" src="./media/climbing-gym-logo.png" alt="Dartmouth Climbing Gym Logo">
     <ul class="nav-links">
       <li><a href="./pages/visitus.html">Visit Us</a></li>
       <li><a href="./pages/waiver.html">Waiver</a></li>
-      <li><a href="./pages/count.html">Live Capacity</a></li>
       <li><a href="./pages/safety.html">Safety</a></li>
       <li><a href="./pages/hours.html">Hours</a></li>
       <li><a href="./pages/services.html">Equipment and Offerings</a></li>
@@ -27,28 +29,41 @@
     <img class="logo" src="./media/climbing-gym-logo.png" alt="Dartmouth Climbing Gym Logo">
     <input type="checkbox" class="nav-toggle" id="nav-toggle">
     <label for="nav-toggle" class="nav-toggle-label">
-      <span></span>
-      <span></span>
-      <span></span>
+      <span></span><span></span><span></span>
     </label>
     <ul class="nav-links">
       <li><a href="./pages/visitus.html">Visit Us</a></li>
       <li><a href="./pages/waiver.html">Waiver</a></li>
-      <li><a href="./pages/count.html">Live Capacity</a></li>
       <li><a href="./pages/safety.html">Safety</a></li>
       <li><a href="./pages/hours.html">Hours</a></li>
       <li><a href="./pages/services.html">Equipment and Offerings</a></li>
     </ul>
   </nav>
 
-  <section id="hero-page">
-    <img class="hero-bg" src="https://outdoors.dartmouth.edu/sites/outdoors/files/styles/16_9_xxl/public/2024-04/Climbing%20Gym_Leadership%20and%20Training%20Center_0.jpeg?h=a1e1a043&itok=E0-r_pHs" alt="Dartmouth Climbing Gym Logo">
+  <section id="hero-page" style="position: relative;">
+    <img class="hero-bg" src="https://outdoors.dartmouth.edu/sites/outdoors/files/styles/16_9_xxl/public/2024-04/Climbing%20Gym_Leadership%20and%20Training%20Center_0.jpeg?h=a1e1a043&itok=E0-r_pHs"
+         alt="Dartmouth Climbing Gym">
     <div class="hero-content">
       <h1>Welcome</h1>
       <p>to </p>
       <h2>The Dartmouth Climbing Gym (DCG)</h2>
       <p>Come and climb with us, plan your first visit today</p>
       <button class="btn" onclick="location.href='./pages/visitus.html'">Visit Us</button>
+    </div>
+    <!-- Capacity overlay, off to the right -->
+    <div id="capacity-overlay"
+         style="
+           position: absolute;
+           top: 1rem;
+           right: 1rem;
+           background: rgba(0,0,0,0.6);
+           color: #fff;
+           padding: 1rem;
+           border-radius: 0.5rem;
+           text-align: right;
+           font-size: 1.1rem;
+         ">
+      <!-- JS will fill this -->
     </div>
   </section>
 
@@ -98,7 +113,7 @@
     </p>
 
     <div class="hours-container">
-      <button class="btn" onclick="location.href='./pages/count.html'">Live Capacity</button>
+      <!-- Live Capacity button removed -->
 
       <table id="hours-of-operation">
         <tr>
@@ -119,19 +134,29 @@
     </div>
   </section>
 
-<section id="groupme" style="text-align: center; padding: 4rem 1rem;">
-  <h1 class="section-header" style="font-size: 2.5rem; margin-bottom: 1rem;">
-    Sign up for our GroupMe
-  </h1>
-  <p class="section-subtitle" style="font-size: 1.2rem; margin-bottom: 2rem;">
-    For the latest news, updates, hours, and events for the term!
-  </p>
-  <a href="https://groupme.com/join_group/85347987/5H4gayRj"
-     class="btn btn-primary"
-     style="font-size: 1.2rem; padding: 0.75rem 2rem; border-radius: 0.5rem;">
-    Join the GroupMe
-  </a>
-</section>
+  <!-- GROUPME SIGNUP + QR CODE -->
+  <section id="groupme" style="text-align: center; padding: 4rem 1rem; display: flex; align-items: center; justify-content: center; gap: 2rem;">
+    <div>
+      <h1 class="section-header" style="font-size: 2.5rem; margin-bottom: 1rem;">
+        Sign up for our GroupMe
+      </h1>
+      <p class="section-subtitle" style="font-size: 1.2rem; margin-bottom: 2rem;">
+        For the latest news, updates, hours, and events for the term!
+      </p>
+      <a href="https://groupme.com/join_group/85347987/5H4gayRj"
+         class="btn btn-primary"
+         style="font-size: 1.2rem; padding: 0.75rem 2rem; border-radius: 0.5rem;">
+        Join the GroupMe
+      </a>
+    </div>
+    <!-- New QR code -->
+    <div>
+      <img src="./media/groupme_qr.png"
+           alt="GroupMe QR Code"
+           style="max-width: 200px; display: block; margin: auto;" />
+    </div>
+  </section>
+
 </body>
 
 <footer>
@@ -139,9 +164,40 @@
   <ul>
     <li><a href="./pages/visitus.html">Visit Us</a></li>
     <li><a href="./pages/waiver.html">Waiver</a></li>
-    <li><a href="./pages/count.html">Live Capacity</a></li>
     <li><a href="https://www.instagram.com/dartmouthclimbing/">Instagram</a></li>
   </ul>
 </footer>
+
+<!-- 1) Firebase SDKs (copy from your count.html) -->
+  <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-app.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-firestore.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-auth.js"></script>
+
+  <!-- 2) Your own code -->
+  <script src="./main.js"></script>
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      const overlay = document.getElementById('capacity-overlay');
+      // hide until we know the real value
+      overlay.style.display = 'none';
+
+      getCurrentCapacity()
+        .then(capacity => {
+          // populate
+          overlay.innerHTML = `
+            Current Gym Capacity: ${capacity}
+            <p style="margin:0.5rem 0 0;">
+              ${capacity < 15
+                ? 'Spots open! Come Climb!'
+                : "We're full right now. Check back soon!"}
+            </p>`;
+          // and show
+          overlay.style.display = 'block';
+        })
+        .catch(err => {
+          console.error('Could not fetch capacity', err);
+        });
+    });
+  </script>
 
 </html>

@@ -286,43 +286,51 @@ p {
 
 
 
-/* ------------------------------------------------------------------------- */
-/* NEWSLETTER */
-#newsletter {
-    display: flex;
-    flex-direction: column;
-    padding: 1rem;
-    align-items: center;
+/* —— Hours table: center everything and give equal padding —— */
+#hours-of-operation {
+  width: 100%;
+  max-width: 600px;
+  margin: 0 auto;
+  border-collapse: collapse;
+}
+#hours-of-operation th,
+#hours-of-operation td {
+  text-align: center;
+  padding: 0.75rem 1rem;
 }
 
-.newsletter {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    align-self: center;
-    width: 75%;
-    gap: 1rem;
-    margin: 1rem;
+/* —— GroupMe section: consistent flex layout and text alignment —— */
+#groupme {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
+  gap: 2rem;
+  padding: 4rem 1rem;
+  text-align: left;
+}
+#groupme > div {
+  flex: 1 1 240px;
+  max-width: 400px;
+}
+#groupme .section-header,
+#groupme .section-subtitle {
+  margin: 0 0 1rem;
+}
+#groupme .btn {
+  margin-top: 1rem;
+}
+#groupme img {
+  display: block;
+  max-width: 200px;
+  margin: 0 auto;
 }
 
-.newsletter input[type="text"] {
-    width: 25%;
-    padding: 1rem;
-    font-size: 1rem;
-    border: 0.1rem solid var(--forest-green);
-    border-radius: 0.25rem;
-    font-family: "Jost", sans-serif;
+/* —— (Optional) make the background & text color consistent —— */
+#groupme {
+  background: transparent;
+  color: inherit;
 }
-
-#newsletter .section-header,
-#newsletter .section-subtitle {
-    margin-left: 0;
-    align-self:center;
-    justify-content: flex-end;
-    width: fit-content;
-}
-
-
 
 /* ------------------------------------------------------------------------- */
 /* FOOTER */
@@ -529,4 +537,31 @@ footer li a {
 #signin-button:hover {
   opacity: 0.3;
   cursor: pointer;
+}
+
+/* —— GroupMe: reset global section-header/subtitle sizing so text doesn’t wrap —— */
+#groupme h1.section-header,
+#groupme p.section-subtitle {
+  display: block;
+  width: auto;
+  margin-left: 0;
+}
+
+/* —— Let the “Join the GroupMe” button size to its content —— */
+#groupme .btn {
+  width: auto;
+}
+
+/* —— Center everything inside each column —— */
+#groupme > div {
+  text-align: center;
+}
+
+#desktop-nav .nav-links {
+  margin: 0 auto;
+}
+
+#desktop-nav,
+#hamburger-nav {
+  z-index: 1000;    /* anything higher than the overlay’s z-index */
 }

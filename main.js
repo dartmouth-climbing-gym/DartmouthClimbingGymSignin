@@ -292,6 +292,12 @@ async function addtocount(num) {
   await db.collection(PUBLIC_REF).doc("info").set(data);
 }
 
+// Fetches the current number of climbers for the hero-page overlay
+async function getCurrentCapacity() {
+  const ref = db.collection(PUBLIC_REF);
+  const snapshot = await ref.get();
+  return snapshot.size;
+}
 
 async function adminsignin() {
   const upw = document.getElementById("password").value;
