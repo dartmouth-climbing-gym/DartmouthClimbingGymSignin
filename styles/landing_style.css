@@ -316,10 +316,11 @@ p {
     width: 100%;
 }
 
-#groupme .btn {
+#groupme a {
     font-size: 1.25rem;
     width: fit-content;;
     padding: .5rem;
+    text-decoration: none;
 }
 
 
