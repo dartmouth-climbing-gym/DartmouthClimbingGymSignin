@@ -77,6 +77,7 @@ p {
 #desktop-nav {
     display: flex;
     flex-direction: row;
+    margin: 0rem;
     width: 100%;
     position: absolute;
     justify-content: space-around;
@@ -304,21 +305,16 @@ p {
   padding: 4rem 1rem;
   text-align: left;
 }
+
 #groupme > div {
   flex: 1 1 240px;
   max-width: 400px;
 }
-#groupme .section-header,
-#groupme .section-subtitle {
-  margin: 0 0 1rem;
-}
-#groupme .btn {
-  margin-top: 1rem;
-}
+
 #groupme img {
   display: block;
   max-width: 200px;
-  margin: 0 auto;
+  margin: 0 ;
 }
 
 #groupme .section-header,
@@ -515,7 +511,7 @@ footer li a {
   right: 8px;
   width: 16px;
   height: 16px;
-  opacity: 0.05;
+  opacity: 0;
   z-index: 9999;
   border-radius: 50%;
   background-color: #1b5e20;
@@ -535,7 +531,7 @@ footer li a {
   right: 8px;
   width: 16px;
   height: 16px;
-  opacity: 0.05;
+  opacity: 0;
   z-index: 9999;
   border-radius: 50%;
   background-color: #1b5e20;
@@ -548,13 +544,6 @@ footer li a {
   cursor: pointer;
 }
 
-/* —— GroupMe: reset global section-header/subtitle sizing so text doesn’t wrap —— */
-#groupme h1.section-header,
-#groupme p.section-subtitle {
-  display: block;
-  width: auto;
-  margin-left: 0;
-}
 
 /* —— Let the “Join the GroupMe” button size to its content —— */
 #groupme .btn {
@@ -564,10 +553,6 @@ footer li a {
 /* —— Center everything inside each column —— */
 #groupme > div {
   text-align: center;
-}
-
-#desktop-nav .nav-links {
-  margin: 0 auto;
 }
 
 #desktop-nav,
