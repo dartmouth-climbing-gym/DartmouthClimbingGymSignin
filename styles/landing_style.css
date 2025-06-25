@@ -561,6 +561,8 @@ footer li a {
 
 /* Capacity Overlay */
 #capacity-overlay {
+  display: flex !important;
+  flex-direction: column;
   position: absolute;
   top: 5rem;
   right: 1rem;
@@ -586,9 +588,19 @@ footer li a {
 #capacity-overlay.full p,
 #capacity-overlay.open p {
   /* kill the inherited hero‐page styling */
+
   background: none !important;
   padding: 0 !important;
   width: auto !important;
-  display: block !important;
-  margin: 0.5rem 0 0 !important;
+  margin: 0 !important;
+  justify-content: center;
+  align-items: center;
+}
+
+hr {
+    color: white;
+    border: none; 
+    border-top: 0.1rem solid white; 
+    width: 100%; 
+    margin: 0.25rem 0;
 }
