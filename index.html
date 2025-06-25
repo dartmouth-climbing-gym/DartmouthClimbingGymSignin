@@ -51,19 +51,7 @@
     </div>
 
     <!-- Capacity overlay, off to the right -->
-    <div id="capacity-overlay"
-         style="
-           position: absolute;
-           top: 5rem;
-           right: 1rem;
-           background: rgba(0,0,0,0.6);
-           color: #fff;
-           padding: 1rem;
-           border-radius: 0.5rem;
-           text-align: right;
-           font-size: 1.1rem;
-         ">
-      <!-- JS will fill this -->
+    <div id="capacity-overlay">
     </div>
   </section>
 
@@ -168,29 +156,33 @@
 
   <!-- 2) Your own code -->
   <script src="./main.js"></script>
-  <script>
-    document.addEventListener('DOMContentLoaded', () => {
-      const overlay = document.getElementById('capacity-overlay');
-      // hide until we know the real value
-      overlay.style.display = 'none';
+<script>
+document.addEventListener('DOMContentLoaded', () => {
+  const overlay = document.getElementById('capacity-overlay');
+  overlay.style.display = 'none';
 
-      getCurrentCapacity()
-        .then(capacity => {
-          // populate
-          overlay.innerHTML = `
-            Current Gym Capacity: ${capacity}
-            <p style="margin:0.5rem 0 0;">
-              ${capacity < 15
-                ? 'Spots open! Come Climb!'
-                : "We're full right now. Check back soon!"}
-            </p>`;
-          // and show
-          overlay.style.display = 'block';
-        })
-        .catch(err => {
-          console.error('Could not fetch capacity', err);
-        });
-    });
-  </script>
+  getCurrentCapacity()
+    .then(capacity => {
+      const isFull = capacity >= 15;
+
+      overlay.innerHTML = `
+        Current Gym Capacity: ${capacity}
+        <hr>
+        <p style="margin:0.5rem 0 0;">
+          ${isFull
+            ? "We're full right now. Check back soon!"
+            : 'Spots open! Come Climb!'}
+        </p>`;
+
+      // toggle the box class
+      overlay.classList.toggle('full', isFull);
+      overlay.classList.toggle('open', !isFull);
+
+      overlay.style.display = 'block';
+    })
+    .catch(err => console.error('Could not fetch capacity', err));
+});
+</script>
+
 
 </html>

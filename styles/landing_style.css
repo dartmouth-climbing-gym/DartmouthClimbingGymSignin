@@ -544,7 +544,6 @@ footer li a {
   cursor: pointer;
 }
 
-
 /* —— Let the “Join the GroupMe” button size to its content —— */
 #groupme .btn {
   width: auto;
@@ -558,4 +557,38 @@ footer li a {
 #desktop-nav,
 #hamburger-nav {
   z-index: 1000;    /* anything higher than the overlay’s z-index */
+}
+
+/* Capacity Overlay */
+#capacity-overlay {
+  position: absolute;
+  top: 5rem;
+  right: 1rem;
+  padding: 1rem;
+  border-radius: 0.5rem;
+  text-align: center;
+  font-size: 1.1rem;
+  display: none;              /* hidden until JS shows it */
+  color: #fff;                /* keep the text white */
+  transition: background-color 0.2s ease-in-out;
+}
+
+/* when spots are open */
+#capacity-overlay.open {
+  background-color: rgba(0, 105, 62, 0.6);  /* dart-green with opacity */
+}
+
+/* when you're full */
+#capacity-overlay.full {
+  background-color: rgba(255, 0, 0, 0.6);    /* semi-transparent red */
+}
+
+#capacity-overlay.full p,
+#capacity-overlay.open p {
+  /* kill the inherited hero‐page styling */
+  background: none !important;
+  padding: 0 !important;
+  width: auto !important;
+  display: block !important;
+  margin: 0.5rem 0 0 !important;
 }
