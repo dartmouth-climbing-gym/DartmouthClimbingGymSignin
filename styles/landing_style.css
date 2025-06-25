@@ -601,6 +601,6 @@ hr {
     color: white;
     border: none; 
     border-top: 0.1rem solid white; 
-    width: 100%; 
+    width: fit-content; 
     margin: 0.25rem 0;
 }
