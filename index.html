@@ -1,77 +1,188 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
-  <head>
-    <!-- Required meta tags -->
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
 
-    <!-- Bootstrap CSS -->
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>DCG-Home</title>
+  <link rel="stylesheet" href="./styles/landing_style.css">
+</head>
 
-    <link rel="stylesheet" href="./style.css">
+<body>
+  <!-- ADMIN / SIGNIN HIDDEN BUTTONS -->
+  <a href="./pages/admin.html" id="admin-button" title="admin" target="_blank" rel="noopener noreferrer"></a>
+  <a href="./pages/signin.html" id="signin-button" title="signin" target="_blank" rel="noopener noreferrer"></a>
 
-    <title>Sign In</title>
-  </head>
+  <nav id="desktop-nav">
+    <img class="logo" src="./media/climbing-gym-logo.png" alt="Dartmouth Climbing Gym Logo">
+    <ul class="nav-links">
+      <li><a href="./pages/visitus.html">Visit Us</a></li>
+      <li><a href="./pages/waiver.html" target="_blank" rel="noopener noreferrer">Waiver</a></li>
+      <li><a href="./pages/safety.html">Safety</a></li>
+      <li><a href="./pages/hours.html">Hours</a></li>
+      <li><a href="./pages/services.html">Equipment and Offerings</a></li>
+    </ul>
+  </nav>
 
-  <body>
-    <div id="adminsignin">
-      <form id="adminform">
-        <label for="password">Enter Admin Password:</label>
-        <input type="password" id="password">
-        <input type="submit" value="Enter">
-      </form>
+  <nav id="hamburger-nav">
+    <img class="logo" src="./media/climbing-gym-logo.png" alt="Dartmouth Climbing Gym Logo">
+    <input type="checkbox" class="nav-toggle" id="nav-toggle">
+    <label for="nav-toggle" class="nav-toggle-label">
+      <span></span><span></span><span></span>
+    </label>
+    <ul class="nav-links">
+      <li><a href="./pages/visitus.html">Visit Us</a></li>
+      <li><a href="./pages/waiver.html" target="_blank" rel="noopener noreferrer">Waiver</a></li>
+      <li><a href="./pages/safety.html">Safety</a></li>
+      <li><a href="./pages/hours.html">Hours</a></li>
+      <li><a href="./pages/services.html">Equipment and Offerings</a></li>
+    </ul>
+  </nav>
+
+  <section id="hero-page" style="position: relative;">
+    <img class="hero-bg" src="https://outdoors.dartmouth.edu/sites/outdoors/files/styles/16_9_xxl/public/2024-04/Climbing%20Gym_Leadership%20and%20Training%20Center_0.jpeg?h=a1e1a043&itok=E0-r_pHs"
+         alt="Dartmouth Climbing Gym">
+    <div class="hero-content">
+      <h1>Welcome</h1>
+      <p>to </p>
+      <h2>The Dartmouth Climbing Gym (DCG)</h2>
+      <p>Come and climb with us, plan your first visit today</p>
+      <button class="btn" onclick="location.href='./pages/visitus.html'">Visit Us</button>
     </div>
 
-    <!-- Main sign in form -->
-    <div id="signin" style="display:none;">
-      <!-- Logo -->
-      <div id="header">
-        <img src="../media/climbing_gym_logo.png" width="600" alt="logo" />
+    <!-- Capacity overlay, off to the right -->
+    <div id="capacity-overlay">
+    </div>
+  </section>
+
+  <section id="visit-us">
+    <h1 class="section-header">Your first visit</h1>
+    <p class="section-subtitle">What to expect</p>
+
+    <ol class="first-visit-list">
+      <div class="container">
+        <li>Sign the Waiver (Do this ahead of time)</li>
+        <p>
+          Everybody that comes into our facility to climb MUST sign a 
+          waiver. You can do so in person or online here.
+        </p>
+        <button class="btn" onclick="location.href='./pages/waiver.html'">Sign Waiver</button>
       </div>
 
-      <!-- Sign in -->
-      <form id="signinform">
-        <div class="form-group">
-          <label for="name">Enter Net ID:</label>
-          <input type="text" class="form-control txtin" id="netid" name="netid" placeholder="">
-          <input type="submit" class="btn btn-primary" value="Sign In/Out">
-        </div>
-      </form><br><br><br>
+      <div class="container">
+        <li>Safety Orientation</li>
+        <p>
+          We take safety at our facility very seriously. If you have any 
+          questions, or would like to know what safety looks like before 
+          visiting us for the first time, feel free to read about it here.
+        </p>
+        <button class="btn" onclick="location.href='./pages/safety.html'">About Safety</button>
+      </div>
 
-      <!-- Link to Waiver -->
-      <p>Have you signed the <a href="waiver.html">waiver</a> already?</p>
+      <div class="container">
+        <li>Have fun!</li>
+        <p>
+          Once you have signed the waiver and have gone through a safety 
+          orientation, you should be all set and good to go! Happy 
+          climbing! Still have questions about climbing? Learn more about
+          it and the specific type of climbing we do here.
+        </p>
+        <button class="btn" onclick="location.href='./pages/visitus.html'">Learn about Climbing</button>
+      </div>
+    </ol>
+  </section>
+
+  <section id="hours">
+    <h1 class="section-header">Hours of operation*</h1>
+    <p class="section-subtitle">
+      Everyday: 4pm - 10pm
+      <br>
+      MWF: 8am - 11am
+      <br>
+      <br>
+
+      Linked below is a more detailed view of our hours of operation* during 
+      the term. Note that we are subject to a strict capacity limit of 15 
+      people in the facility at once. You can see the live current capacity of 
+      the gym at the top of this website!
+    </p>
+
+    <div class="hours-container">
+      <button class="btn" onclick="location.href='./pages/hours.html'">See hours</button>
+
+      <p class="notice">*Hours may vary during academic breaks and holidays</p>
     </div>
+  </section>
 
-    <!-- Scripts -->
-    <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-app.js"></script>
-    <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-firestore.js"></script>
-    <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-auth.js"></script>
-    <script src="./main.js"></script>
-    <script>
-      var form = document.getElementById("adminform");
+  <section id="groupme">
+    <h1 class="section-header">
+      Sign up for our GroupMe
+    </h1>
+    <p class="section-subtitle">
+      For the latest news, updates, hours, and events for the term!
+      <a href="https://groupme.com/join_group/85347987/5H4gayRj"
+        class="btn btn-primary"
+        href='https://groupme.com/join_group/85347987/5H4gayRj'
+        target="_blank"
+        rel="noopener noreferrer"
+        >
+        Join the GroupMe
+      </a>
+    </p>
 
-      function handleForm(event) { 
-        event.preventDefault(); 
-        adminsignin();
-      } 
+    <!-- New QR code -->
+    <div>
+      <img src="./media/groupme_qr.png"
+           alt="GroupMe QR Code"
+           style="max-width: 200px; display: block; margin: auto;" />
+    </div>
+  </section>
 
-      form.addEventListener('submit', handleForm);
+</body>
 
-      async function loadpage() {
-        // await new Promise(resolve => setTimeout(resolve, 500)); // give time to load user
-        document.getElementById("signin").style.display = "block";
-        document.getElementById("adminsignin").style.display = "none";
-        var form = document.getElementById("signinform");
-        function handleForm(event) { 
-          event.preventDefault(); 
-          if(signinout()){
-            form.reset();
-          }
-        } 
-        form.addEventListener('submit', handleForm);
-      }
-    </script>
+<footer>
+  <img class="logo" src="./media/climbing-gym-logo.png" alt="Dartmouth Climbing Gym Logo">
+  <ul>
+    <li><a href="./pages/visitus.html">Visit Us</a></li>
+    <li><a href="./pages/waiver.html">Waiver</a></li>
+    <li><a href="https://www.instagram.com/dartmouthclimbing/">Instagram</a></li>
+  </ul>
+</footer>
 
-  </body>
-  
+<!-- 1) Firebase SDKs (copy from your count.html) -->
+  <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-app.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-firestore.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-auth.js"></script>
+
+  <!-- 2) Your own code -->
+  <script src="./main.js"></script>
+<script>
+document.addEventListener('DOMContentLoaded', () => {
+  const overlay = document.getElementById('capacity-overlay');
+  overlay.style.display = 'none';
+
+  getCurrentCapacity()
+    .then(capacity => {
+      const isFull = capacity >= 15;
+
+      overlay.innerHTML = `
+        Current Gym Capacity: ${capacity}
+        <hr>
+        <p>
+          ${isFull
+            ? "We're full right now. Check back soon!"
+            : 'Spots open! Come Climb!'}
+        </p>`;
+
+      // toggle the box class
+      overlay.classList.toggle('full', isFull);
+      overlay.classList.toggle('open', !isFull);
+
+      overlay.style.display = 'block';
+    })
+    .catch(err => console.error('Could not fetch capacity', err));
+});
+</script>
+
+
 </html>

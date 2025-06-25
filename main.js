@@ -9,45 +9,87 @@ const firebaseConfig = {
   appId: "1:862046563935:web:3e09993dd977d85277b5ea"
 };
 
-const USAGE_LOG_REF = "usage_log_test";
-const PUBLIC_REF = "public_test";
-const USERS_REF = "users_test";
+const USAGE_LOG_REF = "usage_log";
+const PUBLIC_REF = "public";
+const USERS_REF = "users";
 
 var user = null;
+let lastSigned = 0;
 
 // Initialize Firebase
 const app = firebase.initializeApp(firebaseConfig);
 const db = firebase.firestore();
 
-firebase.auth().onAuthStateChanged((user) => {
-  if(user) loadpage();
+// Anonymous sign-in for waiver page
+async function anonymousLogin() {
+  try {
+    await firebase.auth().signInAnonymously();
+  } catch (err) {
+    console.error('Anonymous login failed', err);
+  }
+}
+anonymousLogin();
+
+// Attach listeners once auth state is ready
+firebase.auth().onAuthStateChanged((u) => {
+  user = u;
+  // Waiver form listener
+  const waiverForm = document.getElementById('waiverform');
+  if (waiverForm) {
+    waiverForm.addEventListener('submit', signWaiver);
+  }
+  // Existing admin logic
+  if (user) loadpage();
 });
 
-async function fbusersignin(email, password) {
-  await firebase.auth().setPersistence(firebase.auth.Auth.Persistence.LOCAL);
-  return firebase.auth().signInWithEmailAndPassword(email, password)
-  .then((userCredential) => {
-    user = userCredential.user;
-    return true
-  })
-  .catch((error) => {
-    var errorCode = error.code;
-    var errorMessage = error.message;
-    return false;
-  });
+// Validate based on category
+function validateInput(category, id) {
+  const regex = {
+    'Undergraduate': /^f00\d[0-9a-zA-Z]{3}$/,
+    'Faculty': /^d\d{4}[0-9a-zA-Z]{2}$/,
+    'Other': /^[^\s@]+@[^\s@]+\.[^\s@]+$/,
+  };
+  return regex[category].test(id);
 }
 
-async function signWaiver() {
-  const netid = document.getElementById("netid").value.toLowerCase();
-  const name = document.getElementById("name").value;
-  const data = {
-    netid: netid,
-    name: name
+// Waiver submission handler
+async function signWaiver(event) {
+  event.preventDefault();
+
+  const currentTime = Date.now();
+  if (currentTime - lastSigned < 5000) { // 5 second rate-limit
+    alert("Please wait a few seconds before signing again.");
+    return;
   }
-  await db.collection(USERS_REF).doc(netid).set(data);
-  alert("Signed Waiver!");
+  // Stamp immediately to enforce rate limit before any await
+  lastSigned = currentTime;
+
+  const category = document.getElementById('category').value;
+  const id = document.getElementById('id').value.trim().toLowerCase();
+  const name = document.getElementById('name').value.trim();
+
+  if (!validateInput(category, id)) {
+    alert('Invalid ID or Email format.');
+    return;
+  }
+
+  try {
+    const userRef = db.collection(USERS_REF).doc(id);
+    const docSnap = await userRef.get();
+    if (docSnap.exists) {
+      alert('Waiver already signed.');
+      return;
+    }
+    await userRef.set({ id, name, category });
+    alert('Waiver signed successfully!');
+    document.getElementById('waiverform').reset();
+  } catch (err) {
+    console.error('Error signing waiver', err);
+    alert('Failed to sign waiver. Please try again.');
+  }
 }
 
+// From previous version
 async function getName(netid) {
   const userdoc = db.collection(USERS_REF).doc(netid);
   const doc = await userdoc.get();
@@ -145,18 +187,22 @@ async function signout_individual(netid, timein) {
 }
 
 async function signout_all() {
+  const confirmation = confirm("You are about to sign out everyone. Are you sure?");
+  if (!confirmation) return;
+
   const ref = await db.collection(PUBLIC_REF).get();
   const snapshot = await db.collection(USAGE_LOG_REF).where('signout', '==', 0).get();
   const time = Date.now();
 
   await ref.forEach(doc => {
-    anon_signout(doc.data().signin)
-  })
+    anon_signout(doc.data().signin);
+  });
 
   await snapshot.forEach(doc => {
-      doc.ref.update({signout: time});
+    doc.ref.update({ signout: time });
   });
-  alert("Signed out all!")
+
+  alert("Signed out all!");
   await settable(); // give time to load user
 }
 
@@ -246,6 +292,12 @@ async function addtocount(num) {
   await db.collection(PUBLIC_REF).doc("info").set(data);
 }
 
+// Fetches the current number of climbers for the hero-page overlay
+async function getCurrentCapacity() {
+  const ref = db.collection(PUBLIC_REF);
+  const snapshot = await ref.get();
+  return snapshot.size;
+}
 
 async function adminsignin() {
   const upw = document.getElementById("password").value;

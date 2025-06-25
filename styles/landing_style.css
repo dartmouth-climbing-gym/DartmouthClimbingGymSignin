@@ -1,0 +1,606 @@
+/* GENERAL */
+
+@import url('https://fonts.googleapis.com/css2?family=Anton&family=Jost:ital,wght@0,100..900;1,100..900&display=swap');
+
+:root {
+    --nav-height: 5rem;
+
+    --dart-green: rgb(0, 105, 62);
+    --forest-green: rgb(18, 49, 43);
+    --spring-green: rgb(196, 221, 136);
+}
+
+* {
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    color: rgb(5, 5, 5);
+    font-family: "Jost", sans-serif;
+}
+
+h1.section-header {
+    display: flex;
+    width: 25%;
+    flex-wrap: wrap;
+    font-size: 5rem;
+    margin-left: 15%;
+    color: var(--forest-green);
+}
+
+p.section-subtitle {
+    display: flex;
+    width: 50%;
+    flex-wrap: wrap;
+    font-size: 1.5rem;
+    margin-left: 15%;
+    color: var(--forest-green);
+}
+
+p {
+    display: flex;
+    flex-wrap: wrap;
+    font-size: 1.25rem;
+}
+
+.logo {
+    height: 3rem;
+}
+
+.logo:hover {
+    cursor: pointer;
+}
+
+.btn {
+    color: white;
+    background-color: var(--dart-green);
+    border-style: none;
+    border-radius: 0.5rem;
+    font-family: "Jost", sans-serif;
+    font-size: xx-large;
+    width: 10rem;
+    padding: 0.25rem;
+    cursor: pointer;
+    transition: all 0.1s ease-in-out;
+}
+
+.btn:hover {
+    color: var(--spring-green);
+    background-color: var(--forest-green);
+}
+
+
+
+/* ------------------------------------------------------------------------- */
+/* DESKTOP NAVIGATION */
+#desktop-nav {
+    display: flex;
+    flex-direction: row;
+    margin: 0rem;
+    width: 100%;
+    position: absolute;
+    justify-content: space-around;
+    align-items: center;
+    height: var(--nav-height);
+}
+
+.nav-links {
+    display: flex;
+    list-style: none;
+    gap: 0.75rem;
+    font-size: 1.25rem;
+    font-weight: 500;
+}
+
+#desktop-nav .logo {
+    justify-content: flex-start;
+}
+
+.nav-links a {
+    color: var(--forest-green);
+    padding: 0.25rem 0.75rem;
+    border-radius: 0.25rem;
+    background-color: var(--spring-green);
+    text-decoration: none;
+    transition: all 0.1s ease-in-out;
+}
+
+.nav-links a:hover {
+    color: var(--spring-green);
+    background-color: var(--forest-green);
+}
+
+
+
+/* ------------------------------------------------------------------------- */
+/* HAMBURGER NAVIGATION */
+#hamburger-nav {
+    display: none;
+}
+
+.nav-toggle {
+    display: none;
+}
+
+.nav-toggle-label {
+    position: relative;
+    padding: 0.5rem;
+    width: 2rem;
+    height: 2rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    cursor: pointer;
+}
+
+.nav-toggle-label span {
+    display: block;
+    width: 2rem;
+    height: 0.25rem;
+    background-color: black;
+    transition: all 0.3s ease-in-out;
+}
+
+
+
+/* ------------------------------------------------------------------------- */
+/* HERO */
+#hero-page {
+    width: 100%;
+    height: 100vh;
+}
+
+.hero-bg {
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: -1;
+    object-fit: cover;
+}
+
+.hero-content {
+    display: flex;
+    flex-direction: column;
+    position: absolute;
+    bottom: 5%;
+    left: 15%;
+    align-items: flex-start;
+    justify-content: center;
+
+    gap: 2.5rem;
+}
+
+#hero-page h1 {
+    font-size: 3rem;
+}
+
+#hero-page h2 {
+    font-size: 2.25rem;
+}
+
+#hero-page p {
+    font-size: 1.5rem;
+}
+
+#hero-page h1,
+#hero-page p,
+#hero-page h2 {
+    display: flex;
+    color: white;
+    background-color: var(--dart-green);
+    width: fit-content;
+    padding: 0.5rem;
+}
+
+.hero-content .btn {
+    color: black;
+    background-color: var(--spring-green);
+    border-radius: 0rem;
+}
+
+.hero-content .btn:hover {
+    color: var(--spring-green);
+    background-color: var(--forest-green);
+}
+
+
+
+/* ------------------------------------------------------------------------- */
+/* VISIT US */
+#visit-us {
+    padding: 1rem;
+}
+
+.first-visit-list {
+    display: flex;
+    flex-direction: column;
+    list-style-position: inside;
+    gap: 1rem;
+    width: 70%;
+    margin: 0rem auto;
+}
+
+.first-visit-list .container {
+    background-color: white;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+}
+
+.first-visit-list .container li {
+    margin: 1rem;
+    font-size: 1.75rem;
+    font-weight: 500;
+    color: var(--forest-green);
+}
+
+.first-visit-list .container p {
+    color: var(--forest-green);
+    width: 75%;
+    text-align: center;
+}
+
+.first-visit-list .container .btn {
+    margin: 1rem;
+    width: fit-content;
+    padding: 0.5rem 2rem;
+}
+
+
+
+/* ------------------------------------------------------------------------- */
+/* HOURS OF OPERATION */
+#hours {
+    display: flex;
+    flex-direction: column;
+    background-color: var(--spring-green);
+    padding: 1rem;
+}
+
+#hours .btn {
+    width: 50%;
+    margin: 2rem 0rem;
+}
+
+.hours-container {
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+    width: 75%;
+    align-self: center;
+    align-items: center;
+}
+
+#hours-of-operation {
+    font-size: 1.5rem;
+    width: 50%;
+}
+
+.notice {
+    align-self: flex-start;
+    font-style: italic;
+    font-weight: 700;
+}
+
+/* ------------------------------------------------------------------------- */
+/* NEWSLETTER */
+#groupme {
+    display: flex;
+    flex-direction: column;
+    padding: 1rem;
+    align-items: center;
+}
+
+/* —— GroupMe section: consistent flex layout and text alignment —— */
+#groupme {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
+  gap: 2rem;
+  padding: 4rem 1rem;
+  text-align: left;
+}
+
+#groupme > div {
+  flex: 1 1 240px;
+  max-width: 400px;
+}
+
+#groupme img {
+  display: block;
+  max-width: 200px;
+  margin: 0 ;
+}
+
+#groupme .section-header,
+#groupme .section-subtitle {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    gap: 1rem;
+    margin-left: 0;
+    width: 100%;
+}
+
+#groupme a {
+    font-size: 1.25rem;
+    width: fit-content;;
+    padding: .5rem;
+    text-decoration: none;
+}
+
+
+
+/* ------------------------------------------------------------------------- */
+/* FOOTER */
+footer {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    background-color: var(--forest-green);
+    gap: 2rem;
+}
+
+footer .logo {
+    padding: 1rem 0rem;
+    height: 2.5rem;
+    filter: invert(1);
+}
+
+footer ul {
+    display: flex;
+    flex-wrap: wrap;
+    list-style: none;
+    gap: 2rem;
+}
+
+footer li a {
+    color: white;
+    text-decoration: none;
+    font-size: 1rem;
+    cursor: pointer;
+}
+
+/* ------------------------------------------------------------------------- */
+/* ------------------------------------------------------------------------- */
+/* ------------------------------------------------------------------------- */
+/* MEDIA QUERIES */
+@media only screen and (max-width: 640px){
+    /* Navigation */
+    #desktop-nav {
+        display: none;
+    }
+
+    #hamburger-nav {
+        display: flex;
+        background-color: var(--spring-green);
+        justify-content: space-around;
+        align-items: center;
+        padding: 1rem;
+        position: fixed;
+        height: 2.5rem;
+        width: 100%;
+        z-index: 1;
+    }
+    .nav-toggle-label {
+        display: flex;
+        z-index: 1;
+    }
+
+    .nav-toggle-block {
+        display: block;
+    }
+    
+    .nav-links {
+        position: absolute;
+        top: 0;
+        right: -100%;
+        width: 100%;
+        height: 100vh;
+        flex-direction: column;
+        padding-top: var(--nav-height);
+        transition: right 0.3s ease-in-out;
+        background-color: var(--spring-green);
+    }
+
+    /* Checkbox hack for toggle */
+    .nav-toggle:checked ~ .nav-links {
+        right: 0;
+        width: 100%;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+
+    /* Animate hamburger to X */
+    .nav-toggle:checked ~ .nav-toggle-label span:nth-child(1) {
+        transform: rotate(45deg) translate(0.5rem, 0.5rem);
+    }
+
+    .nav-toggle:checked ~ .nav-toggle-label span:nth-child(2) {
+        opacity: 0;
+    }
+
+    .nav-toggle:checked ~ .nav-toggle-label span:nth-child(3) {
+        transform: rotate(-45deg) translate(0.5rem, -0.5rem);
+    }
+
+
+
+    /* --------------------------------------------------------------------- */
+    /* Section Headers */
+    h1.section-header {
+        width: 90%;
+        font-size: 3rem;
+        margin-left: 5%;
+    }
+
+    p.section-subtitle {
+        width: 90%;
+        margin-left: 5%;
+    }
+
+    /* Hero Section */
+    .hero-content {
+        left: 5%;
+        bottom: 10%;
+        margin-right: 1rem;
+    }
+
+    #hero-page h1 {
+        font-size: 2rem;
+    }
+
+    #hero-page h2 {
+        font-size: 1.5rem;
+    }
+
+    /* Visit Us Section */
+    .first-visit-list {
+        width: 90%;
+    }
+
+    .first-visit-list .container p {
+        width: 90%;
+    }
+
+    /* Hours Section */
+    .hours-container {
+        width: 90%;
+    }
+
+    #hours-of-operation {
+        width: 100%;
+        font-size: 1rem;
+    }
+
+    /* Newsletter Section */
+    .newsletter {
+        width: 90%;
+    }
+
+    .newsletter input[type="text"] {
+        width: 80%;
+    }
+
+    /* Footer */
+    footer {
+        flex-direction: column;
+        padding: 2rem 0;
+        text-align: center;
+    }
+
+    footer ul {
+        flex-direction: column;
+        align-items: center;
+        gap: 0.25rem;
+    }
+}
+
+/* Hidden admin button */
+#admin-button {
+  position: fixed;
+  top: 8px;
+  right: 8px;
+  width: 16px;
+  height: 16px;
+  opacity: 0;
+  z-index: 9999;
+  border-radius: 50%;
+  background-color: #1b5e20;
+  text-indent: -9999px;
+  transition: opacity 0.3s ease;
+}
+
+#admin-button:hover {
+  opacity: 0.3;
+  cursor: pointer;
+}
+
+/* Hidden signin button (just below admin) */
+#signin-button {
+  position: fixed;
+  top: 32px;  /* just below the admin button */
+  right: 8px;
+  width: 16px;
+  height: 16px;
+  opacity: 0;
+  z-index: 9999;
+  border-radius: 50%;
+  background-color: #1b5e20;
+  text-indent: -9999px;
+  transition: opacity 0.3s ease;
+}
+
+#signin-button:hover {
+  opacity: 0.3;
+  cursor: pointer;
+}
+
+/* —— Let the “Join the GroupMe” button size to its content —— */
+#groupme .btn {
+  width: auto;
+}
+
+/* —— Center everything inside each column —— */
+#groupme > div {
+  text-align: center;
+}
+
+#desktop-nav,
+#hamburger-nav {
+  z-index: 1000;    /* anything higher than the overlay’s z-index */
+}
+
+/* Capacity Overlay */
+#capacity-overlay {
+  display: flex !important;
+  flex-direction: column;
+  position: absolute;
+  top: 5rem;
+  right: 1rem;
+  padding: 1rem;
+  border-radius: 0.5rem;
+  text-align: center;
+  font-size: 1.1rem;
+  display: none;              /* hidden until JS shows it */
+  color: #fff;                /* keep the text white */
+  transition: background-color 0.2s ease-in-out;
+}
+
+/* when spots are open */
+#capacity-overlay.open {
+  background-color: rgba(0, 105, 62, 0.6);  /* dart-green with opacity */
+}
+
+/* when you're full */
+#capacity-overlay.full {
+  background-color: rgba(255, 0, 0, 0.6);    /* semi-transparent red */
+}
+
+#capacity-overlay.full p,
+#capacity-overlay.open p {
+  /* kill the inherited hero‐page styling */
+
+  background: none !important;
+  padding: 0 !important;
+  width: auto !important;
+  margin: 0 !important;
+  justify-content: center;
+  align-items: center;
+}
+
+hr {
+    color: white;
+    border: none; 
+    border-top: 0.1rem solid white; 
+    width: 100%; 
+    margin: 0.25rem 0;
+}

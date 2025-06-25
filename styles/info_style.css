@@ -1,0 +1,93 @@
+/* GENERAL */
+@import url('https://fonts.googleapis.com/css2?family=Anton&family=Jost:ital,wght@0,100..900;1,100..900&display=swap');
+
+:root {
+  --nav-height: 5rem;
+
+  --dart-green: rgb(0, 105, 62);
+  --forest-green: rgb(18, 49, 43);
+  --spring-green: rgb(196, 221, 136);
+}
+
+/* * {
+  margin: 0;
+  padding: 0;
+} */
+
+/* info_style.css */
+body {
+  font-family: "Jost", sans-serif;
+  color: var(--forest-green);
+  margin: 0;
+  padding: 0;
+}
+
+a {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+}
+
+header {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-evenly;
+  align-items: center;
+
+  background-color: var(--forest-green);
+  color: white;
+  padding: 1.25rem 0rem;
+  text-align: center;
+  font-size: 1.8em;
+  font-weight: bold;
+}
+
+.logo {
+  height: 60px;
+  margin: 10px;
+  display: block;
+}
+
+section {
+  background-color: #e4f0e9;
+  border: 2px solid #a3c9b7;
+  border-radius: 8px;
+  padding: 20px;
+  margin: 20px auto;
+  max-width: 900px;
+}
+
+h2 {
+  border-bottom: 2px solid #00693e;
+  padding-bottom: 5px;
+  margin-top: 30px;
+}
+
+ul, ol {
+  margin-left: 20px;
+  line-height: 1.6;
+}
+
+li {
+  margin-bottom: 8px;
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+  text-align: center;
+}
+
+th, td {
+  padding: 12px;
+  border: 1px solid #a3c9b7;
+}
+
+th {
+  background-color: #cce5d5;
+}
+
+tr:nth-child(even) td {
+  background-color: #f1f9f4;
+}
