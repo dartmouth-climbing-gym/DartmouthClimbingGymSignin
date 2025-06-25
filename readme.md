@@ -24,10 +24,4 @@ Climbing Gym. It uses Firebase & Firestore for ___.
 
 ## Usage
 
-Access the deployed pages via:
-
-- [index.html](https://dartmouth-climbing-gym.web.app/index.html)
-- [count.html](https://dartmouth-climbing-gym.web.app/count.html)
-- [waiver.html](https://dartmouth-climbing-gym.web.app/waiver.html)
-- [admin.html](https://dartmouth-climbing-gym.web.app/admin.html)
-- [404.html](https://dartmouth-climbing-gym.web.app/invalid-extension)
+Access the deployed homepage: [index.html](https://dartmouth-climbing-gym.web.app/index.html)
