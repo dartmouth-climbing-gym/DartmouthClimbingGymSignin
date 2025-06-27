@@ -46,6 +46,7 @@ p {
 
 .logo {
     height: 3rem;
+    z-index: calc(infinity);
 }
 
 .logo:hover {
@@ -117,6 +118,8 @@ p {
 /* HAMBURGER NAVIGATION */
 #hamburger-nav {
     display: none;
+    align-items: center;
+    justify-content: center;
 }
 
 .nav-toggle {
@@ -124,13 +127,13 @@ p {
 }
 
 .nav-toggle-label {
+    display: flex;
+    flex-direction: column;
     position: relative;
     padding: 0.5rem;
     width: 2rem;
     height: 2rem;
-    display: flex;
-    flex-direction: column;
-    justify-content: space-around;
+    justify-content: space-evenly;
     cursor: pointer;
 }
 
@@ -140,6 +143,7 @@ p {
     height: 0.25rem;
     background-color: black;
     transition: all 0.3s ease-in-out;
+    transform-origin: center;
 }
 
 
@@ -421,7 +425,7 @@ footer li a {
 
     /* Animate hamburger to X */
     .nav-toggle:checked ~ .nav-toggle-label span:nth-child(1) {
-        transform: rotate(45deg) translate(0.5rem, 0.5rem);
+        transform: rotate(45deg) translate(0.4rem, 0.4rem);
     }
 
     .nav-toggle:checked ~ .nav-toggle-label span:nth-child(2) {
@@ -429,7 +433,7 @@ footer li a {
     }
 
     .nav-toggle:checked ~ .nav-toggle-label span:nth-child(3) {
-        transform: rotate(-45deg) translate(0.5rem, -0.5rem);
+        transform: rotate(-45deg) translate(0.4rem, -0.4rem);
     }
 
 
