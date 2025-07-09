@@ -345,10 +345,17 @@ p {
 /* FOOTER */
 footer {
     display: flex;
-    flex-direction: row;
+    flex-direction: column;
     justify-content: center;
     align-items: center;
     background-color: var(--forest-green);
+    gap: 0.5rem;
+}
+footer nav {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
     gap: 2rem;
 }
 
@@ -370,6 +377,14 @@ footer li a {
     text-decoration: none;
     font-size: 1rem;
     cursor: pointer;
+}
+
+footer p {
+    color: var(--spring-green);
+    opacity: 0.5;
+    font-weight: 500;
+    font-size: 0.75rem;
+    padding: 0 0 0.5rem 0;
 }
 
 /* ------------------------------------------------------------------------- */
