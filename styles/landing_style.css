@@ -290,24 +290,44 @@ p {
     font-weight: 700;
 }
 
+
+
 /* ------------------------------------------------------------------------- */
-/* NEWSLETTER */
-#groupme {
+/* CONTACT US */
+#contact {
+    background-color: white;
     display: flex;
     flex-direction: column;
+    flex-wrap: wrap;
     padding: 1rem;
+}
+
+.contact-container {
+    display: flex;
+    flex-direction: column;
+    width: 75%;
+    align-self: center;
     align-items: center;
 }
 
-/* —— GroupMe section: consistent flex layout and text alignment —— */
+#contact .btn {
+    width: fit-content;
+    height: 5rem;
+    margin: 2rem 0rem;
+    padding: 0.25rem 0.75rem;
+}
+
+/* ------------------------------------------------------------------------- */
+/* JOIN GROUP ME */
 #groupme {
   display: flex;
+  flex-direction: column;
   flex-wrap: wrap;
   align-items: center;
   justify-content: center;
   gap: 2rem;
-  padding: 4rem 1rem;
-  text-align: left;
+  padding: 1rem;
+  background-color: var(--spring-green);
 }
 
 #groupme > div {
