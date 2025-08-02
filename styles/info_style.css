@@ -63,12 +63,11 @@ section {
   border: 2px solid var(--dart-green);
   border-radius: 1rem;
   padding: 1rem;
+  gap: 1rem;
 }
 
 h2 {
   border-bottom: 2px solid var(--forest-green);
-  padding-bottom: 5px;
-  margin-top: 30px;
 }
 
 ul, ol {
@@ -80,24 +79,6 @@ li {
   margin-bottom: 8px;
 }
 
-table {
-  width: 100%;
-  border-collapse: collapse;
-  text-align: center;
-}
-
-th, td {
-  padding: 12px;
-  border: 1px solid #a3c9b7;
-}
-
-th {
-  background-color: #cce5d5;
-}
-
-tr:nth-child(even) td {
-  background-color: #f1f9f4;
-}
 
 
 /* --------------------------------------------------------------------------------------------- */
@@ -107,18 +88,21 @@ tr:nth-child(even) td {
   flex-direction: row;
   justify-content: center;
   justify-self: center;
+  align-self: center;
   align-items: center;
 
   width: 75%; 
   height: 50rem;
 
-  border: 0.25rem solid var(--dart-green);
+  border: 2px solid var(--dart-green);
   border-radius: 0.5rem;
   overflow: scroll;
 
   margin: 0;
   padding: 0rem;
 }
+
+
 
 /* --------------------------------------------------------------------------------------------- */
 /* HOURS */
