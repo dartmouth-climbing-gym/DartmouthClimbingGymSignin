@@ -45,8 +45,9 @@ firebase.auth().onAuthStateChanged((u) => {
 // Validate based on category
 function validateInput(category, id) {
   const regex = {
-    'netID': /^[fd][0-9a-zA-Z]{6}$/,
-    'email': /^[^\s@]+@[^\s@]+\.[^\s@]+$/,
+    'Undergraduate': /^f00\d[0-9a-zA-Z]{3}$/,
+    'Faculty': /^d\d{4}[0-9a-zA-Z]{2}$/,
+    'Other': /^[^\s@]+@[^\s@]+\.[^\s@]+$/,
   };
   return regex[category].test(id);
 }
@@ -68,7 +69,7 @@ async function signWaiver(event) {
   const name = document.getElementById('name').value.trim();
 
   if (!validateInput(category, id)) {
-    alert('Invalid netID or Email format.');
+    alert('Invalid ID or Email format.');
     return;
   }
 
