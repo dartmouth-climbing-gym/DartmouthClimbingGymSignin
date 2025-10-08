@@ -75,8 +75,8 @@ firebase deploy --only hosting
 - If you add server-side features later, include a CONTRIBUTING.md with
   development workflows and tests.
 
-## Contributing
+## Authors + Contributors
 
-Open issues or PRs. Keep changes small and document behavior in the relevant
-HTML/JS files.
-
+- Javier A. Rodillas
+- Sebastian Frazier
+- Luc Cote
