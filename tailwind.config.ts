@@ -33,6 +33,9 @@ export default {
       height: {
         nav: "5rem",
       },
+      zIndex: {
+        top: "9999",
+      },
     },
   },
   plugins: [],
