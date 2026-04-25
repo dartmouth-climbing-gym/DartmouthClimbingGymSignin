@@ -13,6 +13,7 @@ import HoursPage from "./pages/HoursPage";
 import LandingPage from "./pages/LandingPage";
 import NotFoundPage from "./pages/NotFoundPage";
 import SafetyPage from "./pages/SafetyPage";
+import SignInPage from "./pages/SignInPage";
 import WaiverPage from "./pages/WaiverPage";
 import ServicesPage from "./pages/ServicesPage";
 import VisitUsPage from "./pages/VisitUsPage";
@@ -47,7 +48,7 @@ function Bare() {
   return (
     <div className="flex min-h-screen flex-col bg-background">
       <Routes>
-        <Route path="/signin" element={<Placeholder name="Sign In" />} />
+        <Route path="/signin" element={<SignInPage />} />
         <Route path="/waiver" element={<WaiverPage />} />
         <Route path="/admin" element={<Placeholder name="Admin" />} />
       </Routes>
