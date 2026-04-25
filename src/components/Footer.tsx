@@ -27,6 +27,7 @@ export default function Footer() {
             className="h-10 invert"
           />
         </Link>
+
         <ul className="flex flex-wrap justify-center gap-x-6 gap-y-1 font-jost">
           {FOOTER_LINKS.map(({ to, label }) => (
             <li key={to}>
@@ -40,6 +41,7 @@ export default function Footer() {
           ))}
         </ul>
       </nav>
+
       <p className="font-jost text-xs font-medium text-spring-green">
         © {new Date().getFullYear()} Dartmouth Climbing Gym
       </p>
