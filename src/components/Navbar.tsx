@@ -27,30 +27,55 @@ export default function Navbar() {
     <>
       {/* Desktop nav */}
       <nav
-        className={`z-50 hidden h-nav w-full items-center justify-between px-8 sm:flex ${
-          isHome ? "absolute top-0" : "sticky top-0 bg-forest-green shadow-md"
+        className={`z-50 hidden h-nav w-full items-center justify-between px-10 sm:flex ${
+          isHome ? "absolute top-0" : "sticky top-0 bg-forest-green border-b border-white/10"
         }`}
       >
+        {/* Logo */}
         <Link to="/" aria-label="Home">
           <img
             src="/media/climbing_gym_logo.png"
             alt="Dartmouth Climbing Gym"
-            className={`h-12 ${!isHome ? "brightness-0 invert" : ""}`}
+            className="h-10 brightness-0 invert opacity-90 transition-opacity hover:opacity-100"
           />
         </Link>
 
-        <ul className="flex items-center gap-3 font-jost text-lg font-medium">
+        {/* Links */}
+        <ul className="flex items-center gap-8">
           {NAV_LINKS.map(({ to, label }) => (
-            <li key={to} className="list-none">
+            <li key={to}>
               <NavLink
                 to={to}
-                className="rounded bg-spring-green px-3 py-1 text-forest-green transition-colors duration-100 hover:bg-forest-green hover:text-spring-green"
+                className={({ isActive }) =>
+                  `group relative font-jost text-sm font-semibold uppercase tracking-widest transition-colors duration-150 ${
+                    isActive ? "text-spring-green" : "text-white/70 hover:text-white"
+                  }`
+                }
               >
-                {label}
+                {({ isActive }) => (
+                  <>
+                    {label}
+                    <span
+                      className={`absolute -bottom-1 left-0 h-px bg-spring-green transition-all duration-200 ${
+                        isActive ? "w-full" : "w-0 group-hover:w-full"
+                      }`}
+                    />
+                  </>
+                )}
               </NavLink>
             </li>
           ))}
         </ul>
+
+        {/* Sign Waiver CTA */}
+        <a
+          href="/waiver"
+          target="_blank"
+          rel="noopener noreferrer"
+          className="rounded border border-spring-green px-5 py-2 font-jost text-sm font-semibold text-spring-green transition-all duration-150 hover:bg-spring-green hover:text-forest-green"
+        >
+          Sign Waiver
+        </a>
       </nav>
 
       {/* Mobile nav bar */}
@@ -80,19 +105,19 @@ export default function Navbar() {
         </button>
       </nav>
 
-      {/* Mobile full-screen menu — editorial drawer */}
+      {/* ── Mobile full-screen drawer ── */}
       {open && (
-        <div className="fixed inset-0 top-16 z-40 flex flex-col bg-forest-green sm:hidden overflow-y-auto">
+        <div className="fixed inset-0 top-16 z-40 flex flex-col overflow-y-auto bg-forest-green sm:hidden">
           {NAV_LINKS.map(({ to, label }, i) => (
             <NavLink
               key={to}
               to={to}
               onClick={close}
-              className="group border-b border-spring-green/20 px-8 py-5 transition-colors duration-150 hover:bg-dart-green/20"
+              className="group border-b border-spring-green/20 px-8 py-5 transition-colors duration-150 hover:bg-dartmouth-green/20"
               style={{ animationDelay: `${i * 0.07}s` }}
             >
               <div className="animate-slide-in" style={{ animationDelay: `${i * 0.07}s` }}>
-                <span className="block font-jost text-xs font-semibold tracking-widest text-dart-green">
+                <span className="block font-jost text-xs font-semibold tracking-widest text-dartmouth-green">
                   0{i + 1}
                 </span>
 
@@ -102,6 +127,17 @@ export default function Navbar() {
               </div>
             </NavLink>
           ))}
+
+          {/* Waiver link in mobile drawer */}
+          <a
+            href="/waiver"
+            target="_blank"
+            rel="noopener noreferrer"
+            onClick={close}
+            className="mx-8 mt-6 self-start rounded border-2 border-spring-green px-6 py-3 font-jost text-base font-semibold text-spring-green transition-all duration-150 hover:bg-spring-green hover:text-forest-green"
+          >
+            Sign Waiver →
+          </a>
         </div>
       )}
     </>
