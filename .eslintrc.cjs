@@ -1,41 +1,67 @@
 module.exports = {
   root: true,
   env: { browser: true, es2022: true },
-  ignorePatterns: ["dist", ".eslintrc.cjs", "node_modules"],
-  plugins: ["html"],
+  ignorePatterns: [
+    'dist',
+    '.eslintrc.cjs',
+    'node_modules',
+    // Legacy static files — removed in Phase 10
+    'pages/',
+    'styles/',
+    'main.js',
+  ],
+  plugins: ['html'],
   overrides: [
+    // App source (TypeScript + React)
     {
-      files: ["**/*.{ts,tsx}"],
+      files: ['src/**/*.{ts,tsx}'],
       extends: [
-        "airbnb",
-        "airbnb-typescript",
-        "airbnb/hooks",
-        "plugin:@typescript-eslint/recommended",
+        'airbnb',
+        'airbnb-typescript',
+        'airbnb/hooks',
+        'plugin:@typescript-eslint/recommended',
+        'prettier',
       ],
-      parser: "@typescript-eslint/parser",
+      parser: '@typescript-eslint/parser',
       parserOptions: {
-        project: "./tsconfig.app.json",
+        project: './tsconfig.app.json',
       },
-      plugins: ["react-refresh"],
+      plugins: ['react-refresh'],
       settings: {
-        "import/resolver": {
-          typescript: { project: "./tsconfig.app.json" },
+        'import/resolver': {
+          typescript: { project: './tsconfig.app.json' },
         },
       },
       rules: {
-        "react/react-in-jsx-scope": "off",
-        "react/prop-types": "off",
-        "import/prefer-default-export": "off",
-        "react-refresh/only-export-components": ["warn", { allowConstantExport: true }],
+        'react/react-in-jsx-scope': 'off',
+        'react/prop-types': 'off',
+        'import/prefer-default-export': 'off',
+        'react-refresh/only-export-components': ['warn', { allowConstantExport: true }],
       },
     },
+    // Root config files (vite.config.ts, tailwind.config.ts)
     {
-      files: ["**/*.html"],
-      plugins: ["html"],
-      extends: ["airbnb"],
-      rules: {
-        "react/react-in-jsx-scope": "off",
+      files: ['*.config.{ts,js}', 'postcss.config.js'],
+      extends: ['airbnb-base', 'airbnb-typescript/base', 'prettier'],
+      parser: '@typescript-eslint/parser',
+      parserOptions: {
+        project: './tsconfig.node.json',
       },
+      settings: {
+        'import/resolver': {
+          typescript: { project: './tsconfig.node.json' },
+        },
+      },
+      rules: {
+        'import/prefer-default-export': 'off',
+        // Config files legitimately import devDependencies
+        'import/no-extraneous-dependencies': ['error', { devDependencies: true }],
+      },
+    },
+    // HTML files (inline scripts via eslint-plugin-html)
+    {
+      files: ['index.html'],
+      plugins: ['html'],
     },
   ],
 };
