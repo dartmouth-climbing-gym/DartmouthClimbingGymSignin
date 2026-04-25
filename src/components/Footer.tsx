@@ -30,7 +30,7 @@ export default function Footer() {
 
         <ul className="flex flex-wrap justify-center gap-x-6 gap-y-1 font-jost">
           {FOOTER_LINKS.map(({ to, label }) => (
-            <li key={to}>
+            <li key={to} className="list-none">
               <Link
                 to={to}
                 className="text-white transition-all duration-100 hover:scale-110 hover:font-medium inline-block"
