@@ -41,7 +41,7 @@ export default function Navbar() {
 
         <ul className="flex items-center gap-3 font-jost text-lg font-medium">
           {NAV_LINKS.map(({ to, label }) => (
-            <li key={to}>
+            <li key={to} className="list-none">
               <NavLink
                 to={to}
                 className="rounded px-3 py-1 bg-spring-green text-forest-green transition-colors duration-100 hover:bg-forest-green hover:text-spring-green"
