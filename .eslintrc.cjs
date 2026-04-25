@@ -1,24 +1,41 @@
-/**
- * .eslintrc.cjs
- * 
- * ESLint configuration file for a React project using TypeScript.
- */
-
 module.exports = {
   root: true,
   env: { browser: true, es2022: true },
-  extends: [
-    "eslint:recommended",
-    "plugin:@typescript-eslint/recommended",
-    "plugin:react-hooks/recommended",
-  ],
   ignorePatterns: ["dist", ".eslintrc.cjs", "node_modules"],
-  parser: "@typescript-eslint/parser",
-  plugins: ["react-refresh"],
-  rules: {
-    "react-refresh/only-export-components": [
-      "warn",
-      { allowConstantExport: true },
-    ],
-  },
+  plugins: ["html"],
+  overrides: [
+    {
+      files: ["**/*.{ts,tsx}"],
+      extends: [
+        "airbnb",
+        "airbnb-typescript",
+        "airbnb/hooks",
+        "plugin:@typescript-eslint/recommended",
+      ],
+      parser: "@typescript-eslint/parser",
+      parserOptions: {
+        project: "./tsconfig.app.json",
+      },
+      plugins: ["react-refresh"],
+      settings: {
+        "import/resolver": {
+          typescript: { project: "./tsconfig.app.json" },
+        },
+      },
+      rules: {
+        "react/react-in-jsx-scope": "off",
+        "react/prop-types": "off",
+        "import/prefer-default-export": "off",
+        "react-refresh/only-export-components": ["warn", { allowConstantExport: true }],
+      },
+    },
+    {
+      files: ["**/*.html"],
+      plugins: ["html"],
+      extends: ["airbnb"],
+      rules: {
+        "react/react-in-jsx-scope": "off",
+      },
+    },
+  ],
 };
