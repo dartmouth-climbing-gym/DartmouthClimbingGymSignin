@@ -15,7 +15,7 @@ interface InfoPageLayoutProps {
 
 export default function InfoPageLayout({ title, children }: InfoPageLayoutProps) {
   return (
-    <main className="mx-auto flex w-full max-w-4xl flex-1 flex-col gap-4 px-4 py-8">
+    <main className="mx-auto flex w-full max-w-5xl flex-1 flex-col gap-4 px-4 py-8">
       <h1 className="font-anton text-4xl uppercase tracking-wide text-forest-green">{title}</h1>
       {children}
     </main>
