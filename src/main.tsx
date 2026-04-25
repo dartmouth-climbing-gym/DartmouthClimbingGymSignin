@@ -1,7 +1,7 @@
 /**
  * src/main.tsx
- * 
- * Entry point for the react application. 
+ *
+ * Entry point for the react application.
  */
 
 import { StrictMode } from "react";

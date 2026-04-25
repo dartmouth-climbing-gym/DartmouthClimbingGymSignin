@@ -1,8 +1,8 @@
 /**
  * vite-env.d.ts
- * 
- * TypeScript declaration file for Vite environment variables in a React 
- * project. This file defines the types for the environment variables used in 
+ *
+ * TypeScript declaration file for Vite environment variables in a React
+ * project. This file defines the types for the environment variables used in
  * the project, ensuring type safety when accessing them in the codebase.
  */
 

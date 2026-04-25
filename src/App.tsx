@@ -1,6 +1,6 @@
 /**
  * src/App.tsx
- * 
+ *
  * Main application component for the Dartmouth Climbing Gym website.
  */
 
