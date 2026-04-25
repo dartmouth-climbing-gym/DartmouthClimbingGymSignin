@@ -4,6 +4,7 @@
  * Navbar component for the Dartmouth Climbing Gym website. This component
  * includes both a desktop and mobile navigation menu.
  */
+
 import { useState } from "react";
 import { Link, NavLink, useLocation } from "react-router-dom";
 
@@ -26,10 +27,9 @@ export default function Navbar() {
     <>
       {/* Desktop nav */}
       <nav
-        className={`
-          z-50 hidden h-nav w-full items-center justify-between px-8 sm:flex
-          ${isHome ? "absolute top-0" : "sticky top-0 bg-forest-green shadow-md"}
-        `}
+        className={`z-50 hidden h-nav w-full items-center justify-between px-8 sm:flex ${
+          isHome ? "absolute top-0" : "sticky top-0 bg-forest-green shadow-md"
+        }`}
       >
         <Link to="/" aria-label="Home">
           <img
@@ -44,7 +44,7 @@ export default function Navbar() {
             <li key={to} className="list-none">
               <NavLink
                 to={to}
-                className="rounded px-3 py-1 bg-spring-green text-forest-green transition-colors duration-100 hover:bg-forest-green hover:text-spring-green"
+                className="rounded bg-spring-green px-3 py-1 text-forest-green transition-colors duration-100 hover:bg-forest-green hover:text-spring-green"
               >
                 {label}
               </NavLink>
@@ -54,40 +54,52 @@ export default function Navbar() {
       </nav>
 
       {/* Mobile nav bar */}
-      <nav className="sticky top-0 z-50 flex h-16 w-full items-center justify-between bg-spring-green px-5 sm:hidden">
+      <nav className="sticky top-0 z-50 flex h-16 w-full items-center justify-between bg-forest-green px-5 sm:hidden">
         <Link to="/" onClick={close} aria-label="Home">
-          <img src="/media/climbing_gym_logo.png" alt="Dartmouth Climbing Gym" className="h-10" />
+          <img
+            src="/media/climbing_gym_logo.png"
+            alt="Dartmouth Climbing Gym"
+            className="h-10 brightness-0 invert"
+          />
         </Link>
-
         <button
           type="button"
           onClick={() => setOpen((o) => !o)}
-          aria-label="Toggle menu"
-          className="flex flex-col justify-center gap-1.5 p-1"
+          aria-label={open ? "Close menu" : "Open menu"}
+          className="flex h-10 w-10 flex-col items-center justify-center gap-1.5"
         >
           <span
-            className={`block h-0.5 w-7 bg-forest-green transition-transform duration-300 origin-center ${open ? "translate-y-2 rotate-45" : ""}`}
+            className={`block h-0.5 w-6 bg-spring-green transition-all duration-300 origin-center ${open ? "translate-y-2 rotate-45" : ""}`}
           />
           <span
-            className={`block h-0.5 w-7 bg-forest-green transition-opacity duration-300 ${open ? "opacity-0" : ""}`}
+            className={`block h-0.5 w-6 bg-spring-green transition-opacity duration-300 ${open ? "opacity-0" : ""}`}
           />
           <span
-            className={`block h-0.5 w-7 bg-forest-green transition-transform duration-300 origin-center ${open ? "-translate-y-2 -rotate-45" : ""}`}
+            className={`block h-0.5 w-6 bg-spring-green transition-all duration-300 origin-center ${open ? "-translate-y-2 -rotate-45" : ""}`}
           />
         </button>
       </nav>
 
-      {/* Mobile full-screen menu */}
+      {/* Mobile full-screen menu — editorial drawer */}
       {open && (
-        <div className="fixed inset-0 top-16 z-40 flex flex-col items-center gap-8 bg-spring-green pt-12 sm:hidden">
-          {NAV_LINKS.map(({ to, label }) => (
+        <div className="fixed inset-0 top-16 z-40 flex flex-col bg-forest-green sm:hidden overflow-y-auto">
+          {NAV_LINKS.map(({ to, label }, i) => (
             <NavLink
               key={to}
               to={to}
               onClick={close}
-              className="font-jost text-2xl font-medium text-forest-green"
+              className="group border-b border-spring-green/20 px-8 py-5 transition-colors duration-150 hover:bg-dart-green/20"
+              style={{ animationDelay: `${i * 0.07}s` }}
             >
-              {label}
+              <div className="animate-slide-in" style={{ animationDelay: `${i * 0.07}s` }}>
+                <span className="block font-jost text-xs font-semibold tracking-widest text-dart-green">
+                  0{i + 1}
+                </span>
+
+                <span className="block font-anton text-4xl uppercase tracking-wide text-spring-green transition-transform duration-150 group-hover:translate-x-2">
+                  {label}
+                </span>
+              </div>
             </NavLink>
           ))}
         </div>
