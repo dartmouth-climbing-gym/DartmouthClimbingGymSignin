@@ -19,7 +19,9 @@ export default {
         "spring-green": "rgb(196, 221, 136)",
         "rich-spring-green": "rgb(165, 215, 95)",
         "granite-gray": "rgb(66, 65, 65)",
-        surface: "#e4f0e9",
+        background: "rgb(247, 247, 247)",
+        surface: "rgb(226, 226, 226)",
+        "surface-secondary": "rgb(112, 112, 112)",
       },
       fontFamily: {
         anton: ["Anton", "sans-serif"],
