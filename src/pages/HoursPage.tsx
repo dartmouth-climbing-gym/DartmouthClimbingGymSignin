@@ -24,7 +24,7 @@ export default function HoursPage() {
             href={CALENDAR_URL}
             target="_blank"
             rel="noopener noreferrer"
-            className="underline hover:text-dart-green"
+            className="underline hover:text-dartmouth-green"
           >
             View the calendar directly.
           </a>

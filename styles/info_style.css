@@ -5,7 +5,7 @@
 :root {
   --nav-height: 5rem;
 
-  --dart-green: rgb(0, 105, 62);
+  --dartmouth-green: rgb(0, 105, 62);
   --forest-green: rgb(18, 49, 43);
   --spring-green: rgb(196, 221, 136);
   --surface: #e4f0e9;
@@ -60,7 +60,7 @@ section {
   justify-self: center;
 
   background-color: var(--surface);
-  border: 2px solid var(--dart-green);
+  border: 2px solid var(--dartmouth-green);
   border-radius: 1rem;
   padding: 1rem;
   gap: 1rem;
@@ -94,7 +94,7 @@ li {
   width: 100%; 
   height: 50rem;
 
-  /* border: 2px solid var(--dart-green);
+  /* border: 2px solid var(--dartmouth-green);
   border-radius: 0.5rem; */
   border: none;
   overflow: scroll;
@@ -110,7 +110,7 @@ li {
 #calendar {
   width: 95%;
   min-height: 95%;
-  border: 2px solid var(--dart-green);
+  border: 2px solid var(--dartmouth-green);
   border-radius: 0.25rem;
   box-shadow: 0 1rem 1rem rgba(0,0,0,0.5);
 }
