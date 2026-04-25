@@ -8,6 +8,7 @@ import { BrowserRouter, Route, Routes, useLocation } from "react-router-dom";
 import Footer from "./components/Footer";
 import Navbar from "./components/Navbar";
 import useAnonymousAuth from "./hooks/useAnonymousAuth";
+import AdminPage from "./pages/AdminPage";
 import ContactUsPage from "./pages/ContactUsPage";
 import HoursPage from "./pages/HoursPage";
 import LandingPage from "./pages/LandingPage";
@@ -17,14 +18,6 @@ import SignInPage from "./pages/SignInPage";
 import WaiverPage from "./pages/WaiverPage";
 import ServicesPage from "./pages/ServicesPage";
 import VisitUsPage from "./pages/VisitUsPage";
-
-function Placeholder({ name }: { name: string }) {
-  return (
-    <main className="flex flex-1 items-center justify-center font-jost text-2xl text-forest-green">
-      {name}
-    </main>
-  );
-}
 
 function WithChrome() {
   return (
@@ -50,7 +43,7 @@ function Bare() {
       <Routes>
         <Route path="/signin" element={<SignInPage />} />
         <Route path="/waiver" element={<WaiverPage />} />
-        <Route path="/admin" element={<Placeholder name="Admin" />} />
+        <Route path="/admin" element={<AdminPage />} />
       </Routes>
     </div>
   );
