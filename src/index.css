@@ -9,3 +9,20 @@
     height: 100%;
   }
 }
+
+@layer utilities {
+  @keyframes slide-in-left {
+    from {
+      opacity: 0;
+      transform: translateX(-1.5rem);
+    }
+    to {
+      opacity: 1;
+      transform: translateX(0);
+    }
+  }
+
+  .animate-slide-in {
+    animation: slide-in-left 0.35s ease-out both;
+  }
+}
