@@ -11,6 +11,15 @@
 }
 
 @layer utilities {
+  .hero-gradient {
+    background: radial-gradient(
+      ellipse 80% 80% at 15% 85%,
+      rgb(0, 105, 62) 0%,
+      rgb(18, 49, 43) 55%,
+      rgb(13, 30, 28) 100%
+    );
+  }
+
   @keyframes slide-in-left {
     from {
       opacity: 0;
@@ -24,5 +33,20 @@
 
   .animate-slide-in {
     animation: slide-in-left 0.35s ease-out both;
+  }
+
+  @keyframes fade-up {
+    from {
+      opacity: 0;
+      transform: translateY(1.5rem);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  .animate-fade-up {
+    animation: fade-up 0.6s ease-out both;
   }
 }
