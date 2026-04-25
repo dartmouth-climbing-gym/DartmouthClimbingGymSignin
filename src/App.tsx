@@ -26,7 +26,7 @@ function Placeholder({ name }: { name: string }) {
 export default function App() {
   return (
     <BrowserRouter>
-      <div className="flex min-h-screen flex-col bg-surface">
+      <div className="flex min-h-screen flex-col bg-background">
         <Navbar />
 
         <Routes>
