@@ -118,9 +118,9 @@ export default function LandingPage() {
       </section>
 
       {/* ── GroupMe ── */}
-      <section className="bg-forest-green px-6 py-16 sm:px-16">
-        <div className="mx-auto flex max-w-4xl flex-col items-start gap-10 sm:flex-row sm:items-center sm:gap-16">
-          <div className="flex flex-col gap-5">
+      <section className="flex bg-forest-green px-6 py-16 sm:px-16 items-center">
+        <div className="mx-auto flex items-center max-w-4xl flex-col gap-10 sm:flex-row sm:gap-16">
+          <div className="flex flex-col gap-5 items-center sm:items-start">
             <p className="font-jost text-xs font-semibold uppercase tracking-widest text-spring-green">
               Stay Connected
             </p>
@@ -139,7 +139,7 @@ export default function LandingPage() {
               href="https://groupme.com/join_group/85347987/3mfDyZUt"
               target="_blank"
               rel="noopener noreferrer"
-              className="self-start rounded border-2 border-spring-green bg-spring-green px-8 py-3 font-jost text-lg font-semibold text-forest-green transition-all duration-150 hover:bg-transparent hover:text-spring-green"
+              className="sm:self-start rounded border-2 border-spring-green bg-spring-green px-8 py-3 font-jost text-lg font-semibold text-forest-green transition-all duration-150 hover:bg-transparent hover:text-spring-green"
             >
               Join the GroupMe
             </a>
