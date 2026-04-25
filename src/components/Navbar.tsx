@@ -35,7 +35,7 @@ export default function Navbar() {
           <img
             src="/media/climbing_gym_logo.png"
             alt="Dartmouth Climbing Gym"
-            className={`h-12 ${!isHome ? "invert" : ""}`}
+            className={`h-12 ${!isHome ? "brightness-0 invert" : ""}`}
           />
         </Link>
 

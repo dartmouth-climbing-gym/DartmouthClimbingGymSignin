@@ -24,7 +24,7 @@ export default function Footer() {
           <img
             src="/media/climbing_gym_logo.png"
             alt="Dartmouth Climbing Gym"
-            className="h-10 invert"
+            className="h-10 brightness-0 invert"
           />
         </Link>
 
