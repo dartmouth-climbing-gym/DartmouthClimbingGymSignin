@@ -1,3 +1,9 @@
+/**
+ * .eslintrc.cjs
+ * 
+ * ESLint configuration file for a React project using TypeScript.
+ */
+
 module.exports = {
   root: true,
   env: { browser: true, es2022: true },
