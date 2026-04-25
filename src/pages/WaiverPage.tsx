@@ -19,7 +19,7 @@ const CATEGORY_LABELS: Record<Category, { label: string; placeholder: string; hi
   email: {
     label: "Dartmouth .edu Email Address",
     placeholder: "jane@dartmouth.edu",
-    hint: "Used for non-Dartmouth community members",
+    hint: "Any Dartmouth email address (must end with @dartmouth.edu)",
   },
 };
 
