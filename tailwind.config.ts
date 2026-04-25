@@ -13,9 +13,12 @@ export default {
   theme: {
     extend: {
       colors: {
-        "dart-green": "rgb(0, 105, 62)",
+        "dartmouth-green": "rgb(0, 105, 62)",
         "forest-green": "rgb(18, 49, 43)",
+        "rich-forest-green": "rgb(13, 30, 28)",
         "spring-green": "rgb(196, 221, 136)",
+        "rich-spring-green": "rgb(165, 215, 95)",
+        "granite-gray": "rgb(66, 65, 65)",
         surface: "#e4f0e9",
       },
       fontFamily: {
