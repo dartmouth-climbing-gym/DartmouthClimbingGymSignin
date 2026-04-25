@@ -3,11 +3,18 @@
  *
  * Main application component for the Dartmouth Climbing Gym website.
  */
+
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 import Footer from "./components/Footer";
 import Navbar from "./components/Navbar";
+import ContactUsPage from "./pages/ContactUsPage";
+import HoursPage from "./pages/HoursPage";
+import NotFoundPage from "./pages/NotFoundPage";
+import SafetyPage from "./pages/SafetyPage";
+import ServicesPage from "./pages/ServicesPage";
+import VisitUsPage from "./pages/VisitUsPage";
 
-// Pages — filled in during later phases
+// Placeholders — replaced as each phase completes
 function Placeholder({ name }: { name: string }) {
   return (
     <main className="flex flex-1 items-center justify-center font-jost text-2xl text-forest-green">
@@ -24,15 +31,15 @@ export default function App() {
 
         <Routes>
           <Route path="/" element={<Placeholder name="Landing Page" />} />
-          <Route path="/visit-us" element={<Placeholder name="Visit Us" />} />
-          <Route path="/safety" element={<Placeholder name="Safety" />} />
-          <Route path="/hours" element={<Placeholder name="Hours" />} />
-          <Route path="/services" element={<Placeholder name="Services" />} />
-          <Route path="/contact" element={<Placeholder name="Contact Us" />} />
+          <Route path="/visit-us" element={<VisitUsPage />} />
+          <Route path="/safety" element={<SafetyPage />} />
+          <Route path="/hours" element={<HoursPage />} />
+          <Route path="/services" element={<ServicesPage />} />
+          <Route path="/contact" element={<ContactUsPage />} />
           <Route path="/signin" element={<Placeholder name="Sign In" />} />
           <Route path="/waiver" element={<Placeholder name="Waiver" />} />
           <Route path="/admin" element={<Placeholder name="Admin" />} />
-          <Route path="*" element={<Placeholder name="404 — Not Found" />} />
+          <Route path="*" element={<NotFoundPage />} />
         </Routes>
 
         <Footer />
