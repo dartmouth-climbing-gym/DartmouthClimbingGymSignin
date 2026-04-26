@@ -5,6 +5,7 @@
  */
 
 import InfoPageLayout from "../components/InfoPageLayout";
+import Section from "../components/Section";
 
 const FEEDBACK_FORM_URL =
   "https://docs.google.com/forms/d/e/1FAIpQLSexL18glGB2nSISirun4TFyT4f1x7_uDPn58UBJumGe6ak7jQ/viewform?embedded=true";
@@ -12,11 +13,7 @@ const FEEDBACK_FORM_URL =
 export default function ContactUsPage() {
   return (
     <InfoPageLayout title="Contact Us">
-      <section className="flex flex-col gap-4 rounded-2xl border-2 border-dartmouth-green bg-surface p-6">
-        <h2 className="border-b-2 border-forest-green pb-1 font-jost text-xl font-bold text-forest-green">
-          Contacting the Dartmouth Climbing Gym
-        </h2>
-
+      <Section title="Contacting the Dartmouth Climbing Gym">
         <p className="font-jost text-forest-green">
           Let us know of any questions and/or feedback about any upcoming or previous visits.
           We&apos;d love to hear from you!
@@ -91,7 +88,7 @@ export default function ContactUsPage() {
         >
           Feedback Form
         </h2>
-        
+
         <iframe
           src={FEEDBACK_FORM_URL}
           title="Dartmouth Climbing Gym Feedback Form"
@@ -99,7 +96,7 @@ export default function ContactUsPage() {
         >
           Loading…
         </iframe>
-      </section>
+      </Section>
     </InfoPageLayout>
   );
 }
