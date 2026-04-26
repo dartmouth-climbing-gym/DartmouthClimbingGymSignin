@@ -7,36 +7,11 @@
 import { useEffect, useRef, useState } from "react";
 import { getName } from "../services/waivers";
 import { signInOut } from "../services/sessions";
+import WaiverLink from "../components/WaiverLink";
 
 type Status = "idle" | "submitting" | "signed-in" | "signed-out" | "error";
 
 const RESET_DELAY_MS = 1000;
-
-function WaiverLink() {
-  return (
-    <a
-      href="/waiver"
-      target="_blank"
-      rel="noopener noreferrer"
-      className="flex w-full items-center justify-center gap-2 rounded border-2 border-surface py-4 font-jost text-base font-semibold text-granite-gray transition-all duration-150 hover:border-dartmouth-green hover:text-dartmouth-green"
-    >
-      <svg
-        className="h-4 w-4 shrink-0"
-        fill="none"
-        viewBox="0 0 24 24"
-        stroke="currentColor"
-        strokeWidth={2}
-      >
-        <path
-          strokeLinecap="round"
-          strokeLinejoin="round"
-          d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"
-        />
-      </svg>
-      First time? Sign the waiver
-    </a>
-  );
-}
 
 export default function SignInPage() {
   const [netid, setNetid] = useState("");
