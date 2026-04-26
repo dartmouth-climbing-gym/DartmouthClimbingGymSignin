@@ -94,7 +94,7 @@ export default function LandingPage() {
           <div className="h-0.5 w-16 bg-spring-green" />
 
           <p className="font-jost text-lg font-light text-white/70 sm:text-xl">
-            Bouldering for everyone at Dartmouth. Open to the entire community.
+            Climb on campus at Dartmouth. Free and Open to the entire community!
           </p>
 
           <div className="flex flex-wrap gap-4">
