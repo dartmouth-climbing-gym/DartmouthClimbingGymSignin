@@ -1,82 +1,54 @@
 # Dartmouth Climbing Gym Sign-In
 
-An open-source static web app to manage check-in/check-out of climbers at the
-Dartmouth Climbing Gym. The app is built with plain HTML/CSS/JavaScript and uses
-Firebase Hosting + Firestore for data storage and hosting.
+An web app to manage check-in/check-out of climbers at the Dartmouth Climbing Gym. Built with React + Vite + TypeScript + Tailwind, backed by Firebase Hosting and Firestore.
 
 ## Live demo
 
-The site is deployed to Firebase Hosting:
-
 https://dartmouth-climbing-gym.web.app/
 
-## Quick features
+## Features
 
-- Simple kiosk-friendly sign-in page for in-person use (`index.html`).
-- Waiver form page (`pages/waiver.html`).
-- Admin view for staff to monitor and manage active climbers (`pages/admin.html`).
-- Public-facing count/status page for displaying the current number of climbers.
+- Kiosk-friendly sign-in/out page for in-person use (`/signin`)
+- Digital waiver form (`/waiver`)
+- Admin dashboard for staff — live climber table, sign-out controls, CSV export (`/admin`)
+- Public-facing landing page with real-time capacity display
 
 ## Tech stack
 
-- Static site: HTML, CSS, JavaScript
-- Firebase Hosting for static hosting
-- Firestore for storing sign-in/out records
+- React 18 + Vite 5 + TypeScript (strict)
+- Tailwind CSS 3 (enumerated tokens only)
+- Firebase v10 modular SDK (Auth + Firestore)
+- Firebase Hosting (SPA with rewrites)
 
-## Prerequisites
-
-- A modern browser (Chrome, Edge, Safari, Firefox)
-- (Optional, for local serving) Python 3 or Node.js to run a local HTTP server
-- (Optional, for deploying) Firebase CLI configured with a Firebase project
-
-## Run locally (quick)
-
-You can open `index.html` directly, or serve the project root with a simple
-HTTP server to avoid CORS/relative-path issues.
-
-Python 3:
+## Run locally
 
 ```bash
-python3 -m http.server 8000
+npm install
+npm run dev
 ```
 
-Node (http-server):
+Vite serves the app at http://localhost:5173. Requires a `.env` file with `VITE_FIREBASE_*` keys (see `.env.example`).
+
+## Build
 
 ```bash
-npx http-server -p 8000
+npm run build       # type-check + Vite production build → dist/
+npm run preview     # serve dist/ locally
 ```
 
-Then open http://localhost:8000 in your browser.
+## Deploying
 
-## Deploying to Firebase Hosting
+CI/CD via GitHub Actions deploys automatically: PRs get Firebase Hosting preview channels, merges to `main` go live.
 
-If you have the Firebase CLI installed and a Firebase project configured for
-hosting, deploy with:
+Manual deploy:
 
 ```bash
 firebase login
 firebase deploy --only hosting
 ```
 
-## File overview
-
-- `index.html` — Main sign-in UI (root)
-- `main.js` — JavaScript that integrates with Firebase & Firestore
-- `styles/` — CSS files (`style.css`, `landing_style.css`, `info_style.css`)
-- `pages/` — Additional pages (admin, waiver, hours, etc.)
-- `media/` — Images and assets (logos, QR codes)
-- `firebase.json` — Firebase hosting and rewrite config
-- `404.html` — Not-found page
-
-## Notes for maintainers
-
-- Firestore rules and indexes are not included in this repo; check your Firebase
-  console and `firebase.json` for rewrites and configuration.
-- If you add server-side features later, include a CONTRIBUTING.md with
-  development workflows and tests.
-
 ## Authors + Contributors
 
-- Javier A. Rodillas
-- Sebastian Frazier
-- Luc Cote
+- Javier A. Rodillas 25' (+ 1)
+- Sebastian Frazier 26'
+- Luc Cote 23'

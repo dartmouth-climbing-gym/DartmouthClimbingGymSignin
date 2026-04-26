@@ -64,5 +64,18 @@ node_modules/
 
 # dotenv environment variables file
 .env
+.env.local
+.env.*.local
+
+# Vite build output
+dist/
+.vite/
+
+# TypeScript build info
+*.tsbuildinfo
 
 .DS_Store
+
+# Agents
+AGENTS.md
+CLAUDE.md
