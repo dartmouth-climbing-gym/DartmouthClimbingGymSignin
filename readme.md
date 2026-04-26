@@ -1,27 +1,54 @@
 # Dartmouth Climbing Gym Sign-In
 
-This is a web-app for managing + facilitating signing in and out of the Dartmouth 
-Climbing Gym. It uses Firebase & Firestore for ___.
+An web app to manage check-in/check-out of climbers at the Dartmouth Climbing Gym. Built with React + Vite + TypeScript + Tailwind, backed by Firebase Hosting and Firestore.
 
-## Files
+## Live demo
 
-### html Pages
+https://dartmouth-climbing-gym.web.app/
 
-- **index.html**:   Main sign in page & interface for use in person. 
-- **count.html**:   Page to display the count of active climbers to anyone with
-                    the link to the page.
-- **waiver.html**:  Waiver form page. 
-- **admin.html**:   Admin page for managing/viewing active climbers. 
-- **404.html**:     404 error page.
+## Features
 
-### Other
+- Kiosk-friendly sign-in/out page for in-person use (`/signin`)
+- Digital waiver form (`/waiver`)
+- Admin dashboard for staff — live climber table, sign-out controls, CSV export (`/admin`)
+- Public-facing landing page with real-time capacity display
 
-- **main.js**:          JavaScript file for using Firebase & Firestore.
-- **style.css**:        CSS file for styling.
-- **firebase.json**:    Firebase ___.
-- **.firebaserc**:      Firebase ___.
-- **.gitignore**:       Git ignore file.
+## Tech stack
 
-## Usage
+- React 18 + Vite 5 + TypeScript (strict)
+- Tailwind CSS 3 (enumerated tokens only)
+- Firebase v10 modular SDK (Auth + Firestore)
+- Firebase Hosting (SPA with rewrites)
 
-Access the deployed homepage: [index.html](https://dartmouth-climbing-gym.web.app/index.html)
+## Run locally
+
+```bash
+npm install
+npm run dev
+```
+
+Vite serves the app at http://localhost:5173. Requires a `.env` file with `VITE_FIREBASE_*` keys (see `.env.example`).
+
+## Build
+
+```bash
+npm run build       # type-check + Vite production build → dist/
+npm run preview     # serve dist/ locally
+```
+
+## Deploying
+
+CI/CD via GitHub Actions deploys automatically: PRs get Firebase Hosting preview channels, merges to `main` go live.
+
+Manual deploy:
+
+```bash
+firebase login
+firebase deploy --only hosting
+```
+
+## Authors + Contributors
+
+- Javier A. Rodillas 25' (+ 1)
+- Sebastian Frazier 26'
+- Luc Cote 23'
