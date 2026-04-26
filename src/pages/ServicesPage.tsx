@@ -5,34 +5,9 @@
  */
 
 import InfoPageLayout from "../components/InfoPageLayout";
-
-function Section({ title, children }: { title?: string; children: React.ReactNode }) {
-  return (
-    <section className="flex flex-col gap-3 rounded-2xl border-2 border-dartmouth-green bg-surface p-6">
-      {title && (
-        <h2 className="border-b-2 border-forest-green pb-1 font-jost text-xl font-bold text-forest-green">
-          {title}
-        </h2>
-      )}
-      {children}
-    </section>
-  );
-}
-
-function SubHeading({ children }: { children: React.ReactNode }) {
-  return <h3 className="font-jost font-semibold text-dartmouth-green">{children}</h3>;
-}
-
-function List({ items }: { items: (string | React.ReactNode)[] }) {
-  return (
-    <ul className="ml-5 list-disc space-y-1.5 font-jost text-forest-green">
-      {items.map((item, i) => (
-        // eslint-disable-next-line react/no-array-index-key
-        <li key={i}>{item}</li>
-      ))}
-    </ul>
-  );
-}
+import Section from "../components/Section";
+import SubHeading from "../components/SubHeading";
+import List from "../components/List";
 
 export default function ServicesPage() {
   return (
