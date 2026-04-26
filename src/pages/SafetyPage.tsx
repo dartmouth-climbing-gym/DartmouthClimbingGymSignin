@@ -5,17 +5,7 @@
  */
 
 import InfoPageLayout from "../components/InfoPageLayout";
-
-function Section({ title, children }: { title: string; children: React.ReactNode }) {
-  return (
-    <section className="flex flex-col gap-3 rounded-2xl border-2 border-dartmouth-green bg-surface p-6">
-      <h2 className="border-b-2 border-forest-green pb-1 font-jost text-xl font-bold text-forest-green">
-        {title}
-      </h2>
-      {children}
-    </section>
-  );
-}
+import Section from "../components/Section";
 
 export default function SafetyPage() {
   return (
